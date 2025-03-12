@@ -1,3 +1,5 @@
-export const routeConfig = { 
-    home : "/"
-}
+export const routeConfig = {
+  home: "/",
+  login: "/login",
+  signUp: "/register"
+};

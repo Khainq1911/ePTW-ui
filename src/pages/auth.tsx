@@ -28,7 +28,7 @@ export default function Login() {
       navigate("/");
       notify("Login successful!", "success");
     } catch (err: any) {
-      notify(err.response.data.message || "Login failed!", "error");
+      notify(err.response?.data.message || "Login failed!", "error");
     } finally {
       setLoading(false);
     }
@@ -49,7 +49,7 @@ export default function Login() {
       navigate("/login");
     } catch (err: any) {
       notify(
-        err.response.data.message || "Register failed! Try again",
+        err.response?.data.message || "Register failed! Try again",
         "error",
       );
     } finally {

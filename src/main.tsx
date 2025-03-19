@@ -2,12 +2,12 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
-import { NotificationProvider } from "./hooks/useNotify.tsx";
+import { AlertProvider } from "./hooks/useNotify.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <NotificationProvider>
+    <AlertProvider>
       <App />
-    </NotificationProvider>
+    </AlertProvider>
   </StrictMode>,
 );

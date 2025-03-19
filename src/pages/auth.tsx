@@ -26,9 +26,9 @@ export default function Login() {
       const res = await loginService(formData);
       localStorage.setItem("accessToken", res.accessToken);
       navigate("/");
-      notify("Login successful!", "success");
+      notify("Login successful!", "success", "Success");
     } catch (err: any) {
-      notify(err.response?.data.message || "Login failed!", "error");
+      notify(err.response?.data.message || "Login failed!", "error", "Error");
     } finally {
       setLoading(false);
     }
@@ -40,17 +40,18 @@ export default function Login() {
     try {
       const { confirmPassword, ...payload } = formData;
       if (confirmPassword !== payload.password) {
-        notify("Passwords do not match. Please try again.", "error");
+        notify("Passwords do not match. Please try again.", "error", "Error");
         setLoading(false);
         return;
       }
       const res = await registerService(payload);
-      notify(res.status || "Register successful!", "success");
+      notify(res.status || "Register successful!", "success","Success");
       navigate("/login");
     } catch (err: any) {
       notify(
         err.response?.data.message || "Register failed! Try again",
         "error",
+        "Error"
       );
     } finally {
       setLoading(false);

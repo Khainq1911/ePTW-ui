@@ -1,12 +1,21 @@
-import { ReactNode} from "react";
+import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 import { isAthenticated } from "../hooks/useAuth";
-
+import Header from "../components/header";
+import Sidebar from "../components/sidebar";
 
 const PrivateRoutes: React.FC<{ children: ReactNode }> = ({ children }) => {
-
- 
-  return isAthenticated() ? <>{children}</> : <Navigate to="/login"/>
+  return isAthenticated() ? (
+    <div>
+      <Header />
+      <div className="mt-[60px]">
+        <Sidebar />
+        <div className="p-5 sm:ml-64">{children}</div>
+      </div>
+    </div>
+  ) : (
+    <Navigate to="/login" />
+  );
 };
 
 export default PrivateRoutes;

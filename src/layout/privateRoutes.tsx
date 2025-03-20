@@ -8,9 +8,9 @@ const PrivateRoutes: React.FC<{ children: ReactNode }> = ({ children }) => {
   return isAthenticated() ? (
     <div>
       <Header />
-      <div className="mt-[60px]">
+      <div className="mt-[70px]">
         <Sidebar />
-        <div className="p-5 sm:ml-64">{children}</div>
+        <div className="p-5">{children}</div>
       </div>
     </div>
   ) : (

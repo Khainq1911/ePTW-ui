@@ -1,3 +1,4 @@
+
 import {  useContext, useEffect, useState } from "react";
 import {
   Divider,
@@ -12,12 +13,14 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation, useNavigate } from "react-router-dom";
+
 import { sidebarContext } from "../hooks/context/sidebarContext";
 
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [selectedIndex, setSelectedIndex] = useState(0);
+
 
   const { openSidebar, toggleSidebar } = useContext(sidebarContext) || {};
 
@@ -30,6 +33,7 @@ export default function Sidebar() {
     setSelectedIndex(index);
     navigate(url);
   };
+
 
   useEffect(() => {
     listItems.map((item, index) => {
@@ -45,6 +49,7 @@ export default function Sidebar() {
       onClose={toggleSidebar}
       className="block sm:hidden"
     >
+
       <Toolbar sx={{ justifyContent: "flex-end" }}>
         <IconButton onClick={toggleSidebar}>
           <CloseIcon />
@@ -63,6 +68,7 @@ export default function Sidebar() {
               borderRadius: "10px",
               backgroundColor:
                 selectedIndex === index ? "#E0E0E0" : "transparent",
+
             }}
           >
             {item.icon}

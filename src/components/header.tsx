@@ -1,11 +1,11 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import {ListItemIcon, Menu, MenuItem, Tab, Tabs } from "@mui/material";
+import { ListItemIcon, Menu, MenuItem, Tab, Tabs } from "@mui/material";
 import Logout from "@mui/icons-material/Logout";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DescriptionIcon from "@mui/icons-material/Description";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { sidebarContext } from "../hooks/context/sidebarContext";
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -23,6 +23,7 @@ export default function Header() {
     localStorage.removeItem("accessToken");
     window.location.href = "/login";
   };
+  const location = useLocation()
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
 
@@ -35,13 +36,18 @@ export default function Header() {
     { name: "Permits", icon: <AssignmentIcon />, url: "/permit" },
   ];
 
+  useEffect(() => {
+    listItems.map((item, index) => {
+      if (location.pathname.includes(item.url)) {
+        return setValue(index);
+      }
+    });
+  }, [location.pathname]);
+
   return (
     <div className="w-screen h-[70px] bg-[#F6F8FA] fixed top-0 left-0 px-5 border-b-1 border-[#D1D9E0]">
       <div className="flex justify-between items-center h-full">
-        <div
-          className="block sm:hidden"
-          onClick={context?.toggleSidebar}
-        >
+        <div className="block sm:hidden" onClick={context?.toggleSidebar}>
           <MenuIcon fontSize="large" className="cursor-pointer text-[#000]" />
         </div>
         <div className="hidden sm:block">
@@ -49,6 +55,7 @@ export default function Header() {
             {listItems.map((item, index) => (
               <Tab
                 label={item.name}
+                value={index}
                 key={index}
                 icon={item.icon}
                 iconPosition="start"

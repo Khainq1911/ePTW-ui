@@ -1,4 +1,4 @@
-import logo from "/home/khaitom1911/project/ePTW-ui/src/assets/permit.png";
+import logo from "../assets/permit.png";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { loginService, registerService } from "../services/auth.service";

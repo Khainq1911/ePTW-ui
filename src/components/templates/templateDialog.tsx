@@ -36,13 +36,14 @@ interface Props {
 }
 
 export default function TemplateDialog({
-  openDialog,
+
   handleCloseDialog,
   item,
 }: Props) {
   
   return (
     <Dialog open={openDialog} onClose={handleCloseDialog} fullScreen>
+
       <div className="w-full h-full bg-[#F4F6F8] overflow-y-scroll">
         <Toolbar
           sx={{
@@ -60,7 +61,9 @@ export default function TemplateDialog({
           <Button
             variant="outlined"
             startIcon={<ArrowBackIcon />}
+
             onClick={handleCloseDialog}
+
           >
             <span className="ml-2">go back</span>
           </Button>
@@ -213,6 +216,7 @@ export default function TemplateDialog({
               <p className="font-semibold">
                 {item.fields?.prework_checks?.title}
               </p>
+
 
               <FormGroup className="col-span-2">
                 {item?.fields?.prework_checks?.fields?.map(

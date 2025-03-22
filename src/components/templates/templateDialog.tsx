@@ -11,7 +11,6 @@ import {
   MenuItem,
   Paper,
   Select,
-  SelectChangeEvent,
   Table,
   TableBody,
   TableCell,
@@ -27,7 +26,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useState } from "react";
+
 
 interface Props {
   openDialog: boolean;
@@ -36,7 +35,7 @@ interface Props {
 }
 
 export default function TemplateDialog({
-
+  openDialog,
   handleCloseDialog,
   item,
 }: Props) {

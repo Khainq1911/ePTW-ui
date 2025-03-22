@@ -7,7 +7,7 @@ export default function ListTemplate({ templatesList }: Props) {
   return (
     <div>
       {templatesList.map((item: any) => (
-        <TemplateCard item={item} />
+        <TemplateCard item={item} key={item.id}/>
       ))}
     </div>
   );

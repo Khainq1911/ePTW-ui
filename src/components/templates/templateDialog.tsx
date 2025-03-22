@@ -31,23 +31,19 @@ import { useState } from "react";
 
 interface Props {
   openDialog: boolean;
-  setOpenDialog: (value: boolean) => void;
+  handleCloseDialog: () => void;
   item: any;
 }
 
 export default function TemplateDialog({
-  openDialog,
-  setOpenDialog,
+
+  handleCloseDialog,
   item,
 }: Props) {
-  const [age, setAge] = useState("");
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
-  };
-
+  
   return (
-    <Dialog open={openDialog} onClose={() => setOpenDialog(false)} fullScreen>
+    <Dialog open={openDialog} onClose={handleCloseDialog} fullScreen>
+
       <div className="w-full h-full bg-[#F4F6F8] overflow-y-scroll">
         <Toolbar
           sx={{
@@ -65,7 +61,9 @@ export default function TemplateDialog({
           <Button
             variant="outlined"
             startIcon={<ArrowBackIcon />}
-            onClick={() => setOpenDialog(false)}
+
+            onClick={handleCloseDialog}
+
           >
             <span className="ml-2">go back</span>
           </Button>
@@ -215,7 +213,10 @@ export default function TemplateDialog({
             </div>
 
             <div className="grid grid-cols-3 ">
-              <p className="font-semibold">{item.fields?.prework_checks?.title}</p>
+              <p className="font-semibold">
+                {item.fields?.prework_checks?.title}
+              </p>
+
 
               <FormGroup className="col-span-2">
                 {item?.fields?.prework_checks?.fields?.map(

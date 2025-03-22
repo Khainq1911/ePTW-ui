@@ -13,11 +13,18 @@ import TemplateDialog from "./templateDialog";
 
 export default function TemplateCard({ item }: { item: any }) {
   const [openDialog, setOpenDialog] = useState(false);
+
+
+  const handleOpenDialog = () => setOpenDialog(true);
+  const handleCloseDialog = () => setOpenDialog(false);
+
+
   return (
     <Card sx={{ width: 240, p: 1 }}>
       <header className="flex justify-between items-center py-1">
         <Checkbox />
-        <Button>
+
+        <Button onClick={() => console.log("Settings clicked")}>
           <SettingsTwoToneIcon />
         </Button>
       </header>
@@ -42,17 +49,17 @@ export default function TemplateCard({ item }: { item: any }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button
-          size="small"
-          onClick={() => {
-            setOpenDialog(true);
-          }}
-        >
+        <Button size="small" onClick={handleOpenDialog}>
           Preview
         </Button>
       </CardActions>
 
-      <TemplateDialog openDialog={openDialog} setOpenDialog={setOpenDialog} item={item}/>
+      <TemplateDialog
+        openDialog={openDialog}
+        handleCloseDialog={handleCloseDialog}
+        item={item}
+      />
+
     </Card>
   );
 }

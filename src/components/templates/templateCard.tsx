@@ -24,7 +24,7 @@ export default function TemplateCard({ item }: { item: any }) {
       <header className="flex justify-between items-center py-1">
         <Checkbox />
 
-        <Button onClick={() => console.log("Settings clicked")}>
+        <Button>
           <SettingsTwoToneIcon />
         </Button>
       </header>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { listTemplatesService } from "../services/templates.service";
 import ListTemplate from "../components/templates/listTemplates";
+import Filter from "../components/filter";
 
 export default function Home() {
   const [templates, setTemplates] = useState([])
@@ -8,12 +9,13 @@ export default function Home() {
     const fetchTemplates = async () => {
       try {
         const res = await listTemplatesService()
-        console.log(res)
         setTemplates(res)
       } catch {}
     };
     fetchTemplates()
   },[]);
 
-  return <div className=""><ListTemplate templatesList={templates}/></div>;
+  return <div>
+    <Filter/>
+    <ListTemplate templatesList={templates}/></div>;
 }

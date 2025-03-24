@@ -49,7 +49,7 @@ export default function Header() {
   }, [location.pathname]);
 
   return (
-    <div className="w-screen h-[70px] bg-[#F6F8FA] fixed top-0 left-0 px-5 border-b-1 border-[#D1D9E0]">
+    <div className="w-screen h-[70px] bg-[#F6F8FA] fixed top-0 left-0 px-5 border-b-1 border-[#D1D9E0] z-30">
       <div className="flex justify-between items-center h-full">
         <div className="block sm:hidden" onClick={context?.toggleSidebar}>
           <MenuIcon fontSize="large" className="cursor-pointer text-[#000]" />

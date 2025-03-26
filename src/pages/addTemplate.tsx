@@ -16,6 +16,7 @@ import { initialState, reducer } from "../hooks/reducer/templateReducer";
 import { createTemplateService } from "../services/templates.service";
 import { useNotification } from "../hooks/useNotify";
 
+
 enum Part {
   ATTACHMENTS = "attachments",
   PPE_REQUIRED = "ppe_required",
@@ -52,6 +53,7 @@ export default function AddTemplate() {
       notify("An error occurred while saving the template", "error", "Error");
     }
   };
+
 
   const handleDeleteField = (part: any, value: any) => {
     switch (part) {
@@ -138,7 +140,9 @@ export default function AddTemplate() {
 
   const navigate = useNavigate();
   return (
+
     <form onSubmit={handleSubmit}>
+
       <AddField
         openDialog={openDialog}
         handleCloseDialog={handleCloseDialog}
@@ -156,9 +160,11 @@ export default function AddTemplate() {
 
       <div className="w-[70%] mx-auto p-8 rounded shadow grid gap-8">
         <header className="flex justify-end">
+
           <Button variant="outlined" color="warning">
             Preview
           </Button>
+
         </header>
         <div className="grid grid-cols-2 gap-4">
           <TextField
@@ -185,6 +191,7 @@ export default function AddTemplate() {
           <Button variant="contained" type="submit">
             submit
           </Button>
+
         </footer>
       </div>
     </form>

@@ -78,6 +78,7 @@ export default function AddTemplate() {
           className="font-semibold text-2xl text-gray-500"
         >
           {item.name}
+
         </Divider>
         <div className="flex justify-between my-5">
           <FormControl sx={{ width: "200px" }}>
@@ -114,7 +115,7 @@ export default function AddTemplate() {
         </div>
 
         <div className="italic">
-          {handleRenderChip(item.alias) || "There is no field added!"}
+         {handleRenderChip(item.alias) || "There is no field added!"}
         </div>
       </div>
     ));
@@ -174,5 +175,6 @@ export default function AddTemplate() {
         </footer>
       </div>
     </form>
+
   );
 }

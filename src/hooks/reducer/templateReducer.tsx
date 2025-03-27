@@ -4,14 +4,17 @@ export const initialState = {
   fields: {
     attachments: {
       type: null,
+      title: "",
       fields: [],
     },
     ppe_required: {
       type: null,
+      title: "",
       fields: [],
     },
     prework_checks: {
       type: null,
+      title: "",
       fields: [],
     },
   },
@@ -37,6 +40,17 @@ export const reducer = (state: any, action: any) => {
           [action.part]: {
             ...state.fields[action.part],
             type: action.payload,
+          },
+        },
+      };
+    case "SET_TITLE":
+      return {
+        ...state,
+        fields: {
+          ...state.fields,
+          [action.part]: {
+            ...state.fields[action.part],
+            title: action.payload,
           },
         },
       };

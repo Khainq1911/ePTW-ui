@@ -16,7 +16,6 @@ import { initialState, reducer } from "../hooks/reducer/templateReducer";
 import { createTemplateService } from "../services/templates.service";
 import { useNotification } from "../hooks/useNotify";
 
-
 enum Part {
   ATTACHMENTS = "attachments",
   PPE_REQUIRED = "ppe_required",
@@ -53,7 +52,6 @@ export default function AddTemplate() {
       notify("An error occurred while saving the template", "error", "Error");
     }
   };
-
 
   const handleDeleteField = (part: any, value: any) => {
     switch (part) {
@@ -94,7 +92,6 @@ export default function AddTemplate() {
           className="font-semibold text-2xl text-gray-500"
         >
           {item.name}
-
         </Divider>
         <div className="flex justify-between my-5">
           <FormControl sx={{ width: "200px" }}>
@@ -120,7 +117,17 @@ export default function AddTemplate() {
               <MenuItem value="Check">Check</MenuItem>
             </Select>
           </FormControl>
-          <TextField label="Title" required />
+          <TextField
+            label="Title"
+            required
+            onChange={(e) =>
+              dispatch({
+                type: "SET_TITLE",
+                part: item.alias,
+                payload: e.target.value,
+              })
+            }
+          />
           <Button
             variant="contained"
             color="success"
@@ -131,7 +138,7 @@ export default function AddTemplate() {
         </div>
 
         <div className="italic">
-         {handleRenderChip(item.alias) || "There is no field added!"}
+          {handleRenderChip(item.alias) || "There is no field added!"}
         </div>
       </div>
     ));
@@ -140,9 +147,7 @@ export default function AddTemplate() {
 
   const navigate = useNavigate();
   return (
-
     <form onSubmit={handleSubmit}>
-
       <AddField
         openDialog={openDialog}
         handleCloseDialog={handleCloseDialog}
@@ -160,11 +165,9 @@ export default function AddTemplate() {
 
       <div className="w-[70%] mx-auto p-8 rounded shadow grid gap-8">
         <header className="flex justify-end">
-
           <Button variant="outlined" color="warning">
             Preview
           </Button>
-
         </header>
         <div className="grid grid-cols-2 gap-4">
           <TextField
@@ -191,10 +194,8 @@ export default function AddTemplate() {
           <Button variant="contained" type="submit">
             submit
           </Button>
-
         </footer>
       </div>
     </form>
-
   );
 }

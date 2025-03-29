@@ -10,21 +10,21 @@ import SettingsTwoToneIcon from "@mui/icons-material/SettingsTwoTone";
 import { formatDate } from "../../utils/dayjs";
 import { useState } from "react";
 import TemplateDialog from "./templateDialog";
+import { useNavigate } from "react-router-dom";
 
 export default function TemplateCard({ item }: { item: any }) {
   const [openDialog, setOpenDialog] = useState(false);
-
+  const navigate = useNavigate();
 
   const handleOpenDialog = () => setOpenDialog(true);
   const handleCloseDialog = () => setOpenDialog(false);
-
 
   return (
     <Card sx={{ width: 240, p: 1 }}>
       <header className="flex justify-between items-center py-1">
         <Checkbox />
 
-        <Button>
+        <Button onClick={() => navigate(`/template/update/${item?.id}`)}>
           <SettingsTwoToneIcon />
         </Button>
       </header>
@@ -59,7 +59,6 @@ export default function TemplateCard({ item }: { item: any }) {
         handleCloseDialog={handleCloseDialog}
         item={item}
       />
-
     </Card>
   );
 }

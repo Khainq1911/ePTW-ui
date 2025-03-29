@@ -22,6 +22,8 @@ export const initialState = {
 
 export const reducer = (state: any, action: any) => {
   switch (action.type) {
+    case "SET_INITAL_DATA":
+      return { ...state, ...action.payload };
     case "SET_NAME":
       return {
         ...state,

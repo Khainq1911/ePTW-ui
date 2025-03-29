@@ -39,7 +39,6 @@ export default function TemplateDialog({
   handleCloseDialog,
   item,
 }: Props) {
-  console.log(item)
 
   return (
     <Dialog open={openDialog} onClose={handleCloseDialog} fullScreen>

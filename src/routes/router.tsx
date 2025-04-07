@@ -1,9 +1,9 @@
-import { routeConfig } from "./configs/router.config";
-import Home from "./pages/home";
-import Login from "./pages/auth";
-import Permit from "./pages/permits";
-import AddTemplate from "./pages/addTemplate";
-import UpdateTemplate from "./pages/updateTemplate";
+import { routeConfig } from "../configs/router.config";
+import Home from "../pages/home";
+import Login from "../pages/auth";
+import Permit from "../pages/permits";
+import AddTemplate from "../pages/addTemplate";
+import UpdateTemplate from "../pages/updateTemplate";
 
 const publicRoutes = [
   { path: routeConfig.login, component: Login },

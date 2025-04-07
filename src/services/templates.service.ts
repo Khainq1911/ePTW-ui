@@ -1,4 +1,4 @@
-import { instances } from "./axios.config";
+import { instances } from "../configs/axios.config";
 
 const listTemplatesService = async (q: string) => {
   const response = await instances.get("/template", { params: { q: q } });

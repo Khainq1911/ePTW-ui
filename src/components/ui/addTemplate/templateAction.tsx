@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useNotification } from "../../../hooks/useNotify";
+import { useNotification } from "../../hooks/useNotify";
 import {
   createTemplateService,
   updateTemplateService,

@@ -2,7 +2,7 @@ import logo from "../assets/permit.png";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { loginService, registerService } from "../services/auth.service";
-import { useNotification } from "../hooks/useNotify";
+import { useNotification } from "../components/hooks/useNotify";
 import { FormDataDto } from "../types/auth.type";
 import LoginForm from "../components/auth/login";
 import RegisterForm from "../components/auth/register";
@@ -45,13 +45,13 @@ export default function Login() {
         return;
       }
       const res = await registerService(payload);
-      notify(res.status || "Register successful!", "success","Success");
+      notify(res.status || "Register successful!", "success", "Success");
       navigate("/login");
     } catch (err: any) {
       notify(
         err.response?.data.message || "Register failed! Try again",
         "error",
-        "Error"
+        "Error",
       );
     } finally {
       setLoading(false);
@@ -94,14 +94,12 @@ export default function Login() {
             <LoginForm
               handleUpdateValue={handleUpdateValue}
               handleLogin={handleLogin}
-              
               loading={loading}
             />
           ) : (
             <RegisterForm
               handleUpdateValue={handleUpdateValue}
               handleSignUp={handleSignUp}
-            
               loading={loading}
             />
           )}

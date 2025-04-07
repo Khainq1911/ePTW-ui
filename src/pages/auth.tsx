@@ -4,8 +4,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { loginService, registerService } from "../services/auth.service";
 import { useNotification } from "../components/hooks/useNotify";
 import { FormDataDto } from "../types/auth.type";
-import LoginForm from "../components/auth/login";
-import RegisterForm from "../components/auth/register";
+import LoginForm from "../components/ui/auth/login";
+import RegisterForm from "../components/ui/auth/register";
+
 
 export default function Login() {
   const { notify } = useNotification();

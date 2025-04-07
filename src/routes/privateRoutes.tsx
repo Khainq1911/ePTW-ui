@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
-import { isAthenticated } from "../hooks/useAuth";
+import { isAthenticated } from "../components/hooks/useAuth";
 import Header from "./header";
 import Sidebar from "./sidebar";
 

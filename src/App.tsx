@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { privateRoutes, publicRoutes } from "./router";
-import PrivateRoutes from "./layout/privateRoutes";
+import { privateRoutes, publicRoutes } from "./routes/router";
+import PrivateRoutes from "./routes/privateRoutes";
 function App() {
   return (
     <Router>

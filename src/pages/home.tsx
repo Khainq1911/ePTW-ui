@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { listTemplatesService } from "../services/templates.service";
 import ListTemplate from "../components/ui/templates/listTemplates";
 import Filter from "../components/ui/filter";
-import { useDebounce } from "../components/hooks/useDebounce";
+import { useDebounce } from "../hooks/useDebounce";
 
 export default function Home() {
   const [templates, setTemplates] = useState([]);
@@ -22,7 +22,7 @@ export default function Home() {
     setQuery(e.target.value);
   };
   return (
-    <div>
+    <div className="p-5">
       <Filter handleChange={handleChange} query={query} />
       <ListTemplate templatesList={templates} />
     </div>

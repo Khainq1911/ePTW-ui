@@ -4,5 +4,6 @@ export const routeConfig = {
   signUp: "/register",
   permit: "/permit",
   addTemplate: "/template/add",
+  addPermit: "/template/:id",
   updateTemplate: "/template/update/:id"
 };

@@ -1,10 +1,7 @@
 import { useParams } from "react-router-dom";
 import { getByIdService } from "../services/templates.service";
 import { useEffect, useReducer } from "react";
-import {
-  initialState,
-  reducer,
-} from "../components/hooks/reducer/templateReducer";
+import { initialState, reducer } from "../hooks/reducer/templateReducer";
 import TemplateAction from "../components/ui/addTemplate/templateAction";
 
 export default function UpdateTemplate() {
@@ -27,7 +24,7 @@ export default function UpdateTemplate() {
   }, [id]);
 
   return (
-    <div>
+    <div className="p-5">
       <TemplateAction state={state} dispatch={dispatch} />
     </div>
   );

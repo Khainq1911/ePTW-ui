@@ -1,6 +1,7 @@
 import { Button, CircularProgress, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
-import { PropsForm } from "../../types/auth.type";
+import { PropsForm } from "../../../types/auth.type";
+
 
 
 export default function LoginForm({

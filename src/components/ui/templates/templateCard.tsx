@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import SettingsTwoToneIcon from "@mui/icons-material/SettingsTwoTone";
-import { formatDate } from "../../utils/dayjs";
+import { formatDate } from "../../../utils/dayjs";
 import { useState } from "react";
 import TemplateDialog from "./templateDialog";
 import { useNavigate } from "react-router-dom";

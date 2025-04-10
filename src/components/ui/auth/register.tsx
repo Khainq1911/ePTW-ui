@@ -1,6 +1,7 @@
 import { Button, CircularProgress, TextField } from "@mui/material";
+import { PropsForm } from "../../../types/auth.type";
 import { Link } from "react-router-dom";
-import { PropsForm } from "../../types/auth.type";
+
 
 export default function RegisterForm({
   handleUpdateValue,

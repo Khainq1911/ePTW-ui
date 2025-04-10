@@ -1,6 +1,6 @@
 import { Avatar, Card, CardContent, CardHeader } from "@mui/material";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import { formatDate } from "../../utils/dayjs";
+import { formatDate } from "../../../utils/dayjs";
 
 export default function PermitCard({ item }: { item: any }) {
   return (

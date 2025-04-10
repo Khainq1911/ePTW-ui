@@ -7,7 +7,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { sidebarContext } from "../hooks/context/sidebarContext";
+import { sidebarContext } from "../../hooks/context/sidebarContext";
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -25,7 +25,7 @@ export default function Header() {
     window.location.href = "/login";
   };
 
-  const location = useLocation()
+  const location = useLocation();
 
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
@@ -38,7 +38,6 @@ export default function Header() {
     { name: "Templates", icon: <DescriptionIcon />, url: "/" },
     { name: "Permits", icon: <AssignmentIcon />, url: "/permit" },
   ];
-
 
   useEffect(() => {
     listItems.map((item, index) => {
@@ -60,7 +59,6 @@ export default function Header() {
               <Tab
                 label={item.name}
                 value={index}
-
                 key={index}
                 icon={item.icon}
                 iconPosition="start"

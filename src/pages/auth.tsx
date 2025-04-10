@@ -2,11 +2,10 @@ import logo from "../assets/permit.png";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { loginService, registerService } from "../services/auth.service";
-import { useNotification } from "../components/hooks/useNotify";
+import { useNotification } from "../hooks/useNotify";
 import { FormDataDto } from "../types/auth.type";
 import LoginForm from "../components/ui/auth/login";
 import RegisterForm from "../components/ui/auth/register";
-
 
 export default function Login() {
   const { notify } = useNotification();

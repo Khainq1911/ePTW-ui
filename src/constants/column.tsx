@@ -8,8 +8,8 @@ export const columns = [
     header: "Text",
     fields: [
       {
-        type: "preFilledText",
-        title: "Prefilled Text",
+        type: "header",
+        title: "Header Text",
       },
       {
         type: "singleLineInput",
@@ -54,12 +54,8 @@ export const columns = [
     header: "List",
     fields: [
       {
-        type: "bulletList",
-        title: "Bullet List",
-      },
-      {
-        type: "numberedList",
-        title: "Numbered List",
+        type: "list",
+        title: "List",
       },
     ],
     icon: <ListIcon />,

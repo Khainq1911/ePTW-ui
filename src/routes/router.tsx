@@ -4,7 +4,7 @@ import Login from "../pages/auth";
 import Permit from "../pages/permits";
 import UpdateTemplate from "../pages/updateTemplate";
 import AddPermit from "../pages/addPermit";
-import CreateTemplateV2 from "../pages/addTemplateV2";
+import CreateTemplateV2 from "../pages/addTemplate";
 
 const publicRoutes = [
   { path: routeConfig.login, component: Login },

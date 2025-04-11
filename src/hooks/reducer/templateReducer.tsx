@@ -1,23 +1,7 @@
 export const initialState = {
   name: "",
   description: "",
-  fields: {
-    attachments: {
-      type: null,
-      title: "",
-      fields: [],
-    },
-    ppe_required: {
-      type: null,
-      title: "",
-      fields: [],
-    },
-    prework_checks: {
-      type: null,
-      title: "",
-      fields: [],
-    },
-  },
+  fields: [],
 };
 
 export const reducer = (state: any, action: any) => {
@@ -34,101 +18,55 @@ export const reducer = (state: any, action: any) => {
         ...state,
         description: action.payload,
       };
-    case "SET_TYPE":
+    case "REORDER_ITEM":
       return {
         ...state,
-        fields: {
-          ...state.fields,
-          [action.part]: {
-            ...state.fields[action.part],
-            type: action.payload,
-          },
-        },
+        fields: action.payload,
       };
-    case "SET_TITLE":
+    case "ADD_ITEM":
       return {
         ...state,
-        fields: {
-          ...state.fields,
-          [action.part]: {
-            ...state.fields[action.part],
-            title: action.payload,
-          },
-        },
+        fields: [...state.fields, action.payload],
       };
-    case "ADD_ATTACHMENTS":
+    case "UPDATE_TITLE":
       return {
         ...state,
-        fields: {
-          ...state.fields,
-          attachments: {
-            ...state.fields.attachments,
-            fields: [...state.fields.attachments.fields, action.payload],
-          },
-        },
+        fields: state.fields.map((field: any) => {
+          return field.id === action.payload.id
+            ? { ...field, label: action.payload.title }
+            : field;
+        }),
       };
-    case "ADD_PPE_REQUIRED":
+    case "ADD_OPTION":
       return {
         ...state,
-        fields: {
-          ...state.fields,
-          ppe_required: {
-            ...state.fields.ppe_required,
-            fields: [...state.fields.ppe_required.fields, action.payload],
-          },
-        },
+        fields: state.fields.map((field: any) => {
+          return field.id === action.payload.id
+            ? {
+                ...field,
+                options: [...(field.options || []), action.payload.option],
+              }
+            : field;
+        }),
       };
-    case "ADD_PREWORK_CHECKS":
+    case "DELETE_OPTION":
       return {
         ...state,
-        fields: {
-          ...state.fields,
-          prework_checks: {
-            ...state.fields.prework_checks,
-            fields: [...state.fields.prework_checks.fields, action.payload],
-          },
-        },
+        fields: state.fields.map((field: any) =>
+          field.id === action.payload.id
+            ? {
+                ...field,
+                options: field.options.filter(
+                  (opt: string) => opt !== action.payload.option,
+                ),
+              }
+            : field,
+        ),
       };
-    case "DELETE_ATTACHMENTS":
+    case "DELETE_ITEM":
       return {
         ...state,
-        fields: {
-          ...state.fields,
-          attachments: {
-            ...state.fields.attachments,
-            fields: state.fields.attachments.fields.filter(
-              (item: any) => item !== action.payload,
-            ),
-          },
-        },
+        fields: state.fields?.filter((item:any) => item.id !== action.payload),
       };
-    case "DELETE_PPE_REQUIRED":
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          ppe_required: {
-            ...state.fields.ppe_required,
-            fields: state.fields.ppe_required.fields.filter(
-              (item: any) => item !== action.payload,
-            ),
-          },
-        },
-      };
-    case "DELETE_PREWORK_CHECKS":
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          prework_checks: {
-            ...state.fields.prework_checks,
-            fields: state.fields.prework_checks.fields.filter(
-              (item: any) => item !== action.payload,
-            ),
-          },
-        },
-      };
-    default:
-      return state;
   }
 };

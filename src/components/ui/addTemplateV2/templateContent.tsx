@@ -18,7 +18,10 @@ import {
   TextField,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { createTemplateService } from "../../../services/templates.service";
+import {
+  createTemplateService,
+  updateTemplateService,
+} from "../../../services/templates.service";
 import { useNavigate } from "react-router-dom";
 import { useNotification } from "../../../hooks/useNotify";
 import { useState } from "react";
@@ -34,12 +37,16 @@ enum TYPE {
   LIST = "list",
 }
 
+enum PATH {
+  CREATE = "/template/add",
+}
+
 export default function TemplateContent({
   id,
   items,
   dispatch,
-  name,
   state,
+  updateId,
 }: any) {
   const navigate = useNavigate();
   const { notify } = useNotification();
@@ -52,6 +59,7 @@ export default function TemplateContent({
   const handleClose = () => {
     setOpen(false);
   };
+
   const renderItem = (
     type: string,
     value: string,
@@ -88,9 +96,13 @@ export default function TemplateContent({
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      await createTemplateService(state);
-      notify("Template created successfully", "success", "Success");
-
+      if (location.pathname.includes(PATH.CREATE)) {
+        await createTemplateService(state);
+        notify("Template created successfully", "success", "Success");
+      } else {
+        await updateTemplateService(state, Number(updateId));
+        notify("Template updated successfully", "success", "Success");
+      }
       navigate("/");
     } catch {
       notify("An error occurred while saving the template", "error", "Error");
@@ -116,7 +128,7 @@ export default function TemplateContent({
             <TextField
               fullWidth
               label="Template Name"
-              value={name}
+              value={state.name}
               onChange={(e) =>
                 dispatch({ type: "SET_NAME", payload: e.target.value })
               }
@@ -142,7 +154,7 @@ export default function TemplateContent({
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {items.map((item: any, index: number) => (
+              {items?.map((item: any, index: number) => (
                 <Draggable key={item.id} draggableId={item.id} index={index}>
                   {(provided) => (
                     <div
@@ -162,7 +174,7 @@ export default function TemplateContent({
                       </div>
                       {renderItem(
                         item.type,
-                        item.title,
+                        item.label,
                         item.id,
                         item?.options,
                       )}

@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import { getByIdService } from "../services/templates.service";
 import { useEffect, useReducer } from "react";
-import { initialState, reducer } from "../hooks/reducer/templateReducer";
-import TemplateAction from "../components/ui/addTemplate/templateAction";
+import { DragDropContext } from "@hello-pangea/dnd";
+import { handleDragEnd } from "../utils/dragEnd";
+import SidebarTemplate from "../components/ui/addTemplateV2/sidebar";
+import TemplateContent from "../components/ui/addTemplateV2/templateContent";
+import { initialState, reducer } from "../hooks/reducer/templateReducerV2";
 
 export default function UpdateTemplate() {
   const { id } = useParams();
@@ -24,8 +27,19 @@ export default function UpdateTemplate() {
   }, [id]);
 
   return (
-    <div className="p-5">
-      <TemplateAction state={state} dispatch={dispatch} />
-    </div>
+    <DragDropContext
+      onDragEnd={(result) => handleDragEnd(result, dispatch, state)}
+    >
+      <div style={{ height: "calc(100vh - 70px)" }}>
+        <SidebarTemplate />
+        <TemplateContent
+          id={"1"}
+          updateId={id}
+          items={state.fields}
+          dispatch={dispatch}
+          state={state}
+        />
+      </div>
+    </DragDropContext>
   );
 }

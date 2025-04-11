@@ -1,8 +1,8 @@
 import { useReducer } from "react";
-import TemplateContent from "../components/ui/addTemplateV2/templateContent";
-import SidebarTemplate from "../components/ui/addTemplateV2/sidebar";
-import { DragDropContext, DropResult } from "@hello-pangea/dnd";
-import { initialState, reducer } from "../hooks/reducer/templateReducerV2";
+import TemplateContent from "../components/ui/addTemplate/templateContent";
+import SidebarTemplate from "../components/ui/addTemplate/sidebar";
+import { DragDropContext } from "@hello-pangea/dnd";
+import { initialState, reducer } from "../hooks/reducer/templateReducer";
 import { handleDragEnd } from "../utils/dragEnd";
 export default function CreateTemplateV2() {
   const [state, dispatch] = useReducer(reducer, initialState);

@@ -1,5 +1,5 @@
 import { Draggable, Droppable } from "@hello-pangea/dnd";
-import { columns } from "../../../constants/column";
+import { columns } from "../../../constants/createTemplateSidebar";
 
 export default function SidebarTemplate() {
   return (

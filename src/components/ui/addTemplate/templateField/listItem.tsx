@@ -12,6 +12,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
+import { StyledToggleButtonGroup } from "../../../../utils/customizeToggleBtn";
 
 export default function ListItem({ dispatch, value, id, options }: any) {
   const [optionInput, setOptionInput] = useState("");
@@ -30,22 +31,6 @@ export default function ListItem({ dispatch, value, id, options }: any) {
     setOptionInput("");
   };
 
-  const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
-    [`& .${toggleButtonGroupClasses.grouped}`]: {
-      margin: theme.spacing(0.5),
-      border: "none",
-      borderRadius: theme.shape.borderRadius,
-      padding: "4px 12px",
-      [`&.${toggleButtonGroupClasses.disabled}`]: {
-        border: `1px solid ${theme.palette.divider}`,
-      },
-    },
-    [`& .${toggleButtonGroupClasses.middleButton},& .${toggleButtonGroupClasses.lastButton}`]:
-      {
-        marginLeft: -1,
-        borderLeft: "1px solid transparent",
-      },
-  }));
 
   return (
     <Grid container spacing={2}>

@@ -1,4 +1,4 @@
-import TemplateCard from "./templateCard";
+import TemplateCard from "./card";
 
 interface Props {
   templatesList: any;

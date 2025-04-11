@@ -3,9 +3,9 @@ import { getByIdService } from "../services/templates.service";
 import { useEffect, useReducer } from "react";
 import { DragDropContext } from "@hello-pangea/dnd";
 import { handleDragEnd } from "../utils/dragEnd";
-import SidebarTemplate from "../components/ui/addTemplateV2/sidebar";
-import TemplateContent from "../components/ui/addTemplateV2/templateContent";
-import { initialState, reducer } from "../hooks/reducer/templateReducerV2";
+import SidebarTemplate from "../components/ui/addTemplate/sidebar";
+import TemplateContent from "../components/ui/addTemplate/templateContent";
+import { initialState, reducer } from "../hooks/reducer/templateReducer";
 
 export default function UpdateTemplate() {
   const { id } = useParams();

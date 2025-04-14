@@ -92,78 +92,85 @@ export default function TemplateContent({
         </Button>
       </div>
 
-      {tab === "preview" ? (
-        <div className="w-[800px] mx-auto bg-white rounded">
-          <TemplatePreview item={state} />
-        </div>
-      ) : (
-        <div className="w-[800px] mx-auto bg-white p-4 rounded">
-          <Grid container spacing={2}>
-            <Grid>
-              <TextField
-                fullWidth
-                label="Template Name"
-                value={state.name}
-                onChange={(e) =>
-                  dispatch({ type: "SET_NAME", payload: e.target.value })
-                }
-              />
-            </Grid>
-          </Grid>
-          <Divider
-            textAlign="center"
-            sx={{
-              my: 2,
-              color: "#1976d2",
-              fontWeight: "bold",
-              fontSize: "16px",
-            }}
-          >
-            DROPABLE
-          </Divider>
+      <div
+        className={`w-[800px] mx-auto bg-white rounded ${
+          tab === "preview" ? "" : "hidden"
+        }`}
+      >
+        <TemplatePreview item={state} />
+      </div>
 
-          <Droppable droppableId={id}>
-            {(provided) => (
-              <div
-                className=" p-4 border-2 rounded border-dashed border-gray-300 relative"
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-              >
-                {items?.map((item: any, index: number) => (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
-                    {(provided) => (
+      <div
+        className={`w-[800px] mx-auto bg-white p-4 rounded ${
+          tab === "edit" ? "" : "hidden"
+        }`}
+      >
+        <Grid container spacing={2}>
+          <Grid>
+            <TextField
+              fullWidth
+              label="Template Name"
+              value={state.name}
+              onChange={(e) =>
+                dispatch({ type: "SET_NAME", payload: e.target.value })
+              }
+            />
+          </Grid>
+        </Grid>
+        <Divider
+          textAlign="center"
+          sx={{
+            my: 2,
+            color: "#1976d2",
+            fontWeight: "bold",
+            fontSize: "16px",
+          }}
+        >
+          DROPABLE
+        </Divider>
+
+        <Droppable droppableId={id}>
+          {(provided) => (
+            <div
+              className="p-4 border-2 rounded border-dashed border-gray-300 relative"
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+            >
+              {items?.map((item: any, index: number) => (
+                <Draggable key={item.id} draggableId={item.id} index={index}>
+                  {(provided) => (
+                    <div
+                      className="group border border-gray-400 bg-white p-4 rounded mb-6 relative"
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
                       <div
-                        className="group border border-gray-400 bg-white p-4 rounded mb-6 relative"
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
+                        className="absolute -top-4 -right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-white rounded shadow hover:bg-gray-100 cursor-pointer p-1 text-gray-400"
+                        onClick={() =>
+                          dispatch({ type: "DELETE_ITEM", payload: item.id })
+                        }
                       >
-                        <div
-                          className="absolute -top-4 -right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-white rounded shadow hover:bg-gray-100 cursor-pointer p-1 text-gray-400"
-                          onClick={() =>
-                            dispatch({ type: "DELETE_ITEM", payload: item.id })
-                          }
-                        >
-                          <DeleteIcon sx={{ color: "red" }} />
-                          <span className="ml-1">Delete</span>
-                        </div>
-                        {renderItem(
-                          item.type,
-                          item.label,
-                          item.id,
-                          item?.options,
-                          dispatch,
-                        )}
+                        <DeleteIcon sx={{ color: "red" }} />
+                        <span className="ml-1">Delete</span>
                       </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </div>
-      )}
+                      {renderItem(
+                        item.type,
+                        item.label,
+                        item.id,
+                        item?.options,
+                        dispatch,
+                      )}
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </div>
+
       <Dialog
         open={open}
         onClose={handleClose}

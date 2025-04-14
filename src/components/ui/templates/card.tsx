@@ -3,9 +3,11 @@ import {
   Card,
   CardActions,
   CardContent,
-  Checkbox,
+  IconButton,
+  Tooltip,
   Typography,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import SettingsTwoToneIcon from "@mui/icons-material/SettingsTwoTone";
 import { formatDate } from "../../../utils/dayjs";
 import { useState } from "react";
@@ -22,11 +24,20 @@ export default function TemplateCard({ item }: { item: any }) {
   return (
     <Card sx={{ width: 240, p: 1 }}>
       <header className="flex justify-between items-center py-1">
-        <Checkbox />
+        <Tooltip title="Delete" placement="top">
+          <IconButton color="error">
+            <DeleteIcon />
+          </IconButton>
+        </Tooltip>
 
-        <Button onClick={() => navigate(`/template/update/${item?.id}`)}>
-          <SettingsTwoToneIcon />
-        </Button>
+        <Tooltip title="Update" placement="top">
+          <IconButton
+            color="primary"
+            onClick={() => navigate(`/template/update/${item?.id}`)}
+          >
+            <SettingsTwoToneIcon />
+          </IconButton>
+        </Tooltip>
       </header>
       <CardContent sx={{ mt: -2 }}>
         <Typography
@@ -49,9 +60,18 @@ export default function TemplateCard({ item }: { item: any }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={handleOpenDialog}>
-          Preview
-        </Button>
+        <div>
+          <Button size="small" onClick={handleOpenDialog}>
+            Preview
+          </Button>
+          <Button
+            size="small"
+            onClick={() => navigate(`/template/${item.id}`)}
+            sx={{ color: "green" }}
+          >
+            Use this template
+          </Button>
+        </div>
       </CardActions>
 
       <TemplateDialog

@@ -7,24 +7,31 @@ import YesNoNAPreview from "../components/ui/templates/fieldPreview/yesNoNa";
 import DatePickerPreview from "../components/ui/templates/fieldPreview/datePicker";
 import DateRangePreview from "../components/ui/templates/fieldPreview/dateRange";
 
-export const renderPreviewTemplate = (type: string, item: any) => {
+export const renderPreviewTemplate = (
+  type: string,
+  item: any,
+  dispatch?: any,
+  state?: any,
+) => {
   switch (type) {
     case TYPE.HEADER:
       return <Title item={item} />;
     case TYPE.SINGLE_LINE:
-      return <Input item={item} />;
+      return <Input item={item} dispatch={dispatch} state={state} />;
     case TYPE.MULTIPLE_LINE:
-      return <MultipleInput item={item} />;
+      return <MultipleInput item={item} dispatch={dispatch} state={state} />;
     case TYPE.LIST:
-      return <ListOptions item={item} />;
+      return <ListOptions item={item} dispatch={dispatch} state={state} />;
     case TYPE.YES_NO_NA:
-      return <YesNoNAPreview item={item} />;
+      return <YesNoNAPreview item={item} dispatch={dispatch} state={state} />;
     case TYPE.YES_NO:
-      return <YesNoNAPreview item={item} />;
+      return <YesNoNAPreview item={item} dispatch={dispatch} state={state} />;
     case TYPE.DATE_PICKER:
-      return <DatePickerPreview item={item} />;
+      return (
+        <DatePickerPreview item={item} dispatch={dispatch} state={state} />
+      );
     case TYPE.DATE_RANGE:
-      return <DateRangePreview item={item} />;
+      return <DateRangePreview item={item} dispatch={dispatch} state={state} />;
     default:
       return;
   }

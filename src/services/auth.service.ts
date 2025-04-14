@@ -11,4 +11,9 @@ const registerService = async (registerDto: FormDataDto) => {
   return res.data;
 };
 
-export { loginService, registerService };
+const listUserByRole = async (roleId: number) => {
+  const res = await instances.get(`/user/role/${roleId}`);
+  return res.data;
+};
+
+export { loginService, registerService, listUserByRole };

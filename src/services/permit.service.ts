@@ -5,4 +5,9 @@ const listPermitService = async () => {
   return response.data;
 };
 
-export { listPermitService };
+const createPermitService = async (payload: any) => {
+  const response = await instances.post("/permit", payload);
+  return response;
+};
+
+export { listPermitService, createPermitService };

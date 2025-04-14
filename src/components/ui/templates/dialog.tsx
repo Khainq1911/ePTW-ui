@@ -1,6 +1,7 @@
 import { Alert, Button, Dialog, Toolbar } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import TemplatePreview from "./preview";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   openDialog: boolean;
@@ -13,6 +14,7 @@ export default function TemplateDialog({
   handleCloseDialog,
   item,
 }: Props) {
+  const navigate = useNavigate();
   return (
     <Dialog open={openDialog} onClose={handleCloseDialog} fullScreen>
       <div className="w-full h-full bg-[#F4F6F8] overflow-y-scroll">
@@ -36,7 +38,11 @@ export default function TemplateDialog({
           >
             <span className="ml-2">go back</span>
           </Button>
-          <Button variant="contained" color="success">
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => navigate(`/template/${item.id}`)}
+          >
             use this template
           </Button>
         </Toolbar>

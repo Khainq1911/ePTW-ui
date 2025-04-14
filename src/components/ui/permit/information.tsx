@@ -12,7 +12,6 @@ interface Props {
 
 export default function PermitInformation({ dispatch, state }: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(state);
     dispatch({
       type: "ADD_INFOR",
       payload: {

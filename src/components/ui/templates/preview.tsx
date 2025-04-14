@@ -83,9 +83,11 @@ export default function TemplatePreview({
       </div>
       <PermitInformation dispatch={dispatch} state={state} />
       <div className="grid gap-8">
-        {item?.fields.map((field: any, index: number) => (
-          <div key={index}>{renderPreviewTemplate(field.type, field, dispatch, state)}</div>
-        ))}
+        {(state ? state?.data : item?.fields)?.map(
+          (field: any, index: number) => (
+            <div key={index}>{renderPreviewTemplate(field, dispatch)}</div>
+          ),
+        )}
       </div>
     </div>
   );

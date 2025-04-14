@@ -31,7 +31,6 @@ export default function TemplatePreview({
     if (listUsers.length > 0) return;
     try {
       const res = await listUserByRole(2);
-      console.log(res);
       setListUsers(res);
     } catch {}
   };
@@ -49,8 +48,9 @@ export default function TemplatePreview({
             labelId="receiver"
             id="receiver"
             label="Receiver"
-            value={""}
+            value={state?.receiverId || ''}
             onFocus={listUser}
+            onChange={(e: any) => dispatch({ type: "SET_RECEIVER", payload: e.target.value})}
           >
             <MenuItem value="">
               <em>None</em>

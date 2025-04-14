@@ -36,6 +36,11 @@ export const reducer = (state: any, action: any) => {
             : item,
         ),
       };
+    case "SET_RECEIVER":
+      return {
+        ...state,
+        receiverId: action.payload,
+      };
     default:
       return state;
   }

@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SaveIcon from "@mui/icons-material/Save";
 import { initialState, reducer } from "../hooks/reducer/permitReducer";
+import { createPermitService } from "../services/permit.service";
 
 export default function AddPermit() {
   const [template, setTemplate] = useState<TemplateType | null>(null);
@@ -26,6 +27,20 @@ export default function AddPermit() {
     getTemplate();
   }, []);
 
+  const handleCreatePermit = async () => {
+    const payload = {
+      ...state,
+      peopleNumber: Number(state.peopleNumber),
+      templateId: template?.id,
+      senderId: getUser()?.id,
+    };
+    try {
+      await createPermitService(payload);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="w-[80%] mx-auto p-4 ">
       <div className="flex justify-between items-center my-4">
@@ -36,7 +51,11 @@ export default function AddPermit() {
         >
           Back
         </Button>
-        <Button color="warning" startIcon={<SaveIcon />}>
+        <Button
+          color="warning"
+          startIcon={<SaveIcon />}
+          onClick={handleCreatePermit}
+        >
           Save
         </Button>
       </div>

@@ -42,8 +42,8 @@ export default function PermitInformation({ dispatch, state }: Props) {
           placeholder="Type text..."
           variant="outlined"
           fullWidth
-          value={state?.company_name || ""}
-          name="company_name"
+          value={state?.companyName || ""}
+          name="companyName"
           onChange={handleChange}
         />
       </Grid>
@@ -56,8 +56,8 @@ export default function PermitInformation({ dispatch, state }: Props) {
           placeholder="Type text..."
           fullWidth
           variant="outlined"
-          name="people_number"
-          value={state?.people_number || ""}
+          name="peopleNumber"
+          value={state?.peopleNumber || ""}
           onChange={handleChange}
         />
       </Grid>
@@ -69,8 +69,8 @@ export default function PermitInformation({ dispatch, state }: Props) {
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
               label="Start Date"
-              value={state?.start_date ? dayjs(state.start_date) : null}
-              onChange={(newValue) => handleChangeDate("start_date", newValue)}
+              value={state?.start_date ? dayjs(state.startTime) : null}
+              onChange={(newValue) => handleChangeDate("startTime", newValue)}
             />
           </DemoContainer>
         </LocalizationProvider>
@@ -79,8 +79,8 @@ export default function PermitInformation({ dispatch, state }: Props) {
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
               label="End Date"
-              value={state?.end_date ? dayjs(state.end_date) : null}
-              onChange={(newValue) => handleChangeDate("end_date", newValue)}
+              value={state?.end_date ? dayjs(state.endTime) : null}
+              onChange={(newValue) => handleChangeDate("endTime", newValue)}
             />
           </DemoContainer>
         </LocalizationProvider>
@@ -94,8 +94,8 @@ export default function PermitInformation({ dispatch, state }: Props) {
           placeholder="Type text..."
           fullWidth
           variant="outlined"
-          name="work_activities"
-          value={state?.work_activities || ""}
+          name="workActivities"
+          value={state?.workActivities || ""}
           onChange={handleChange}
         />
       </Grid>

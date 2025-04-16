@@ -3,8 +3,8 @@ import { getByIdService } from "../services/templates.service";
 import { useEffect, useReducer } from "react";
 import { DragDropContext } from "@hello-pangea/dnd";
 import { handleDragEnd } from "../utils/dragEnd";
-import SidebarTemplate from "../components/ui/addTemplate/sidebar";
-import TemplateContent from "../components/ui/addTemplate/templateContent";
+import SidebarTemplate from "../components/ui/templates/addTemplate/AddTemplateSidebar";
+import TemplateContent from "../components/ui/templates/addTemplate/addTemplateContent";
 import { initialState, reducer } from "../hooks/reducer/templateReducer";
 
 export default function UpdateTemplate() {

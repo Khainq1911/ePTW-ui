@@ -1,10 +1,10 @@
-import Date from "../components/ui/addTemplate/templateField/date/date";
-import DateRange from "../components/ui/addTemplate/templateField/date/dateRange";
-import ListItem from "../components/ui/addTemplate/templateField/listItem";
-import HeaderLine from "../components/ui/addTemplate/templateField/text/headerLine";
-import MultipleLineInput from "../components/ui/addTemplate/templateField/text/multipleLineInput";
-import SingleLineInput from "../components/ui/addTemplate/templateField/text/singleLineInput";
-import YesNo from "../components/ui/addTemplate/templateField/yesNo";
+import Date from "../components/ui/templates/addTemplate/addTemplateField/date/date";
+import DateRange from "../components/ui/templates/addTemplate/addTemplateField/date/dateRange";
+import ListItem from "../components/ui/templates/addTemplate/addTemplateField/listItem";
+import HeaderLine from "../components/ui/templates/addTemplate/addTemplateField/text/headerLine";
+import MultipleLineInput from "../components/ui/templates/addTemplate/addTemplateField/text/multipleLineInput";
+import SingleLineInput from "../components/ui/templates/addTemplate/addTemplateField/text/singleLineInput";
+import YesNo from "../components/ui/templates/addTemplate/addTemplateField/yesNo";
 import { TYPE } from "../constants/templateFieldType";
 
 export const renderItem = (

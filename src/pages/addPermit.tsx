@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { SyntheticEvent, useEffect, useReducer, useState } from "react";
 import { getByIdService } from "../services/templates.service";
 import { TemplateType } from "../types/template.type";
-import TemplatePreview from "../components/ui/templates/preview";
+
 import { getUser } from "../hooks/useAuth";
 import { Box, Button, CircularProgress } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -11,6 +11,7 @@ import { initialState, reducer } from "../hooks/reducer/permitReducer";
 import { createPermitService } from "../services/permit.service";
 import Confirm from "../components/ui/confirm";
 import { useNotification } from "../hooks/useNotify";
+import TemplatePreview from "../components/ui/templates/preview/previewTemplate";
 
 export default function AddPermit() {
   const [template, setTemplate] = useState<TemplateType | null>(null);

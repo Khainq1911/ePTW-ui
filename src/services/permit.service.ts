@@ -7,7 +7,7 @@ const listPermitService = async () => {
 
 const createPermitService = async (payload: any) => {
   const response = await instances.post("/permit", payload);
-  return response;
+  return response?.data;
 };
 
 export { listPermitService, createPermitService };

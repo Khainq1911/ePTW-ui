@@ -17,7 +17,7 @@ export default function Permit() {
 
   return (
     <div>
-      <div>
+      <div className="flex p-4 gap-4 flex-wrap">
         {listPermit.map((item, index) => (
           <PermitCard item={item} key={index} />
         ))}

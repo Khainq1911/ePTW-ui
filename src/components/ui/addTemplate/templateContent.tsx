@@ -1,11 +1,6 @@
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import {
   Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   Divider,
   Grid,
   Tab,
@@ -23,6 +18,7 @@ import { useState } from "react";
 import { renderItem } from "../../../utils/renderTemplateItem";
 import TemplatePreview from "../templates/preview";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Confirm from "../confirm";
 
 enum PATH {
   CREATE = "/template/add",
@@ -51,8 +47,7 @@ export default function TemplateContent({
     setOpen(false);
   };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     try {
       if (location.pathname.includes(PATH.CREATE)) {
         await createTemplateService(state);
@@ -171,33 +166,13 @@ export default function TemplateContent({
         </Droppable>
       </div>
 
-      <Dialog
+      <Confirm
         open={open}
-        onClose={handleClose}
-        aria-labelledby="save-template-title"
-        aria-describedby="save-template-description"
-      >
-        <DialogTitle id="save-template-title">Confirm Save</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="save-template-description">
-            Are you sure you want to save this template? You can still edit it
-            later.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="error" variant="contained">
-            Cancel
-          </Button>
-          <Button
-            onClick={handleSubmit}
-            color="primary"
-            variant="contained"
-            autoFocus
-          >
-            Save
-          </Button>
-        </DialogActions>
-      </Dialog>
+        handleClose={handleClose}
+        handleSubmit={handleSubmit}
+        content="Are you sure you want to save this template? You can still edit it
+          later."
+      />
     </div>
   );
 }

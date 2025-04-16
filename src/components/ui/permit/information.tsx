@@ -21,7 +21,6 @@ export default function PermitInformation({ dispatch, state }: Props) {
     });
   };
   const handleChangeDate = (name: string, value: any) => {
-    console.log(state);
     dispatch({
       type: "ADD_INFOR",
       payload: {
@@ -39,6 +38,7 @@ export default function PermitInformation({ dispatch, state }: Props) {
 
       <Grid size={8}>
         <TextField
+          required={true}
           placeholder="Type text..."
           variant="outlined"
           fullWidth
@@ -53,8 +53,9 @@ export default function PermitInformation({ dispatch, state }: Props) {
       </Grid>
       <Grid size={8}>
         <TextField
-          placeholder="Type text..."
-          fullWidth
+          placeholder="Type number..."
+          required
+          type="number"
           variant="outlined"
           name="peopleNumber"
           value={state?.peopleNumber || ""}
@@ -91,6 +92,7 @@ export default function PermitInformation({ dispatch, state }: Props) {
       </Grid>
       <Grid size={8}>
         <TextField
+          required
           placeholder="Type text..."
           fullWidth
           variant="outlined"
@@ -105,6 +107,7 @@ export default function PermitInformation({ dispatch, state }: Props) {
       </Grid>
       <Grid size={8}>
         <TextField
+          required
           placeholder="Type text..."
           fullWidth
           variant="outlined"
@@ -118,6 +121,7 @@ export default function PermitInformation({ dispatch, state }: Props) {
       </Grid>
       <Grid size={8}>
         <TextField
+          required
           placeholder="Type text..."
           fullWidth
           variant="outlined"

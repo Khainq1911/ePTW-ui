@@ -11,7 +11,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import SettingsTwoToneIcon from "@mui/icons-material/SettingsTwoTone";
 import { formatDate } from "../../../utils/dayjs";
 import { useState } from "react";
-import TemplateDialog from "./dialog";
+import TemplateDialog from "./preview/dialog";
 import { useNavigate } from "react-router-dom";
 
 export default function TemplateCard({ item }: { item: any }) {

@@ -1,24 +1,18 @@
 import { Droppable, Draggable } from "@hello-pangea/dnd";
-import {
-  Button,
-  Divider,
-  Grid,
-  Tab,
-  Tabs,
-  TextField,
-} from "@mui/material";
+import { Button, Divider, Grid, Tab, Tabs, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
   createTemplateService,
   updateTemplateService,
-} from "../../../services/templates.service";
+} from "../../../../services/templates.service";
 import { useNavigate } from "react-router-dom";
-import { useNotification } from "../../../hooks/useNotify";
+import { useNotification } from "../../../../hooks/useNotify";
 import { useState } from "react";
-import { renderItem } from "../../../utils/renderTemplateItem";
-import TemplatePreview from "../templates/preview";
+import { renderItem } from "../../../../utils/renderTemplateItem";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Confirm from "../confirm";
+import Confirm from "../../confirm";
+import TemplatePreview from "../preview/previewTemplate";
 
 enum PATH {
   CREATE = "/template/add",

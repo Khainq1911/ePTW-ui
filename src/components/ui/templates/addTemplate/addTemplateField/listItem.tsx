@@ -12,7 +12,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
-import { StyledToggleButtonGroup } from "../../../../utils/customizeToggleBtn";
+import { StyledToggleButtonGroup } from "../../../../../utils/customizeToggleBtn";
 
 export default function ListItem({ dispatch, value, id, options }: any) {
   const [optionInput, setOptionInput] = useState("");
@@ -30,7 +30,6 @@ export default function ListItem({ dispatch, value, id, options }: any) {
     });
     setOptionInput("");
   };
-
 
   return (
     <Grid container spacing={2}>

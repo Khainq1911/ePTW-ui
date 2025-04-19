@@ -1,7 +1,8 @@
 import { Alert, Button, Dialog, Toolbar } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import TemplatePreview from "./preview";
+
 import { useNavigate } from "react-router-dom";
+import TemplatePreview from "./previewTemplate";
 
 interface Props {
   openDialog: boolean;

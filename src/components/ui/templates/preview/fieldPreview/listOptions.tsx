@@ -1,5 +1,5 @@
 import { Grid, ToggleButton } from "@mui/material";
-import { StyledToggleButtonGroup } from "../../../../utils/customizeToggleBtn";
+import { StyledToggleButtonGroup } from "../../../../../utils/customizeToggleBtn";
 
 export default function ListOptions({ item, dispatch }: any) {
   return (
@@ -9,13 +9,16 @@ export default function ListOptions({ item, dispatch }: any) {
       </Grid>
       <Grid size={8}>
         <StyledToggleButtonGroup
-          onChange={(_, value) =>
-            dispatch({
-              type: "SET_VALUE",
-              payload: { id: item.id, value },
-            })
-          }
+          onChange={(_, value) => {
+            if (dispatch) {
+              dispatch({
+                type: "SET_VALUE",
+                payload: { id: item.id, value },
+              });
+            }
+          }}
           value={item?.value}
+          sx={{ display: "flex", flexWrap: "wrap" }}
         >
           {item?.options?.map((option: string, index: number) => (
             <ToggleButton value={option} key={index}>

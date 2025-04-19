@@ -6,11 +6,12 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { renderPreviewTemplate } from "../../../utils/renderPreviewTemplate";
-import { formatDate } from "../../../utils/dayjs";
-import PermitInformation from "../permit/information";
-import { listUserByRole } from "../../../services/auth.service";
+
 import { useState } from "react";
+import { listUserByRole } from "../../../../services/auth.service";
+import { formatDate } from "../../../../utils/dayjs";
+import PermitInformation from "../../permit/information";
+import { renderPreviewTemplate } from "../../../../utils/renderPreviewTemplate";
 
 interface PreviewProps {
   item: any;
@@ -48,9 +49,11 @@ export default function TemplatePreview({
             labelId="receiver"
             id="receiver"
             label="Receiver"
-            value={state?.receiverId || ''}
+            value={state?.receiverId || ""}
             onFocus={listUser}
-            onChange={(e: any) => dispatch({ type: "SET_RECEIVER", payload: e.target.value})}
+            onChange={(e: any) =>
+              dispatch({ type: "SET_RECEIVER", payload: e.target.value })
+            }
           >
             <MenuItem value="">
               <em>None</em>

@@ -6,9 +6,11 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 export default function DatePickerPreview({ item }: any) {
   return (
     <Grid container spacing={2}>
-      <Grid size={4}>{item.label}</Grid>
+      <Grid size={4} sx={{ fontWeight: "500" }}>
+        {item.label}
+      </Grid>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker label="Date"/>
+        <DatePicker label="Date" />
       </LocalizationProvider>
     </Grid>
   );

@@ -1,6 +1,6 @@
 import { Grid, ToggleButton } from "@mui/material";
-import { StyledToggleButtonGroup } from "../../../../utils/customizeToggleBtn";
-import { TYPE } from "../../../../constants/templateFieldType";
+import { StyledToggleButtonGroup } from "../../../../../utils/customizeToggleBtn";
+import { TYPE } from "../../../../../constants/templateFieldType";
 
 export default function YesNoNaPreview({ item, dispatch }: any) {
  

@@ -1,11 +1,12 @@
-import MultipleInput from "../components/ui/templates/fieldPreview/inputMultiple";
-import Title from "../components/ui/templates/fieldPreview/title";
+import DatePickerPreview from "../components/ui/templates/preview/fieldPreview/datePicker";
+import DateRangePreview from "../components/ui/templates/preview/fieldPreview/dateRange";
+import Input from "../components/ui/templates/preview/fieldPreview/input";
+import MultipleInput from "../components/ui/templates/preview/fieldPreview/inputMultiple";
+import ListOptions from "../components/ui/templates/preview/fieldPreview/listOptions";
+import Title from "../components/ui/templates/preview/fieldPreview/title";
+import YesNoNaPreview from "../components/ui/templates/preview/fieldPreview/yesNoNa";
 import { TYPE } from "../constants/templateFieldType";
-import ListOptions from "../components/ui/templates/fieldPreview/listOptions";
-import Input from "../components/ui/templates/fieldPreview/input";
-import DatePickerPreview from "../components/ui/templates/fieldPreview/datePicker";
-import DateRangePreview from "../components/ui/templates/fieldPreview/dateRange";
-import YesNoNaPreview from "../components/ui/templates/fieldPreview/yesNoNa";
+
 
 export const renderPreviewTemplate = (item?: any, dispatch?: any) => {
   switch (item?.type) {

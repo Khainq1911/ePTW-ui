@@ -14,23 +14,27 @@ export default function DateRangePreview({ item, dispatch }: any) {
             <DatePicker
               label="Start date"
               value={item?.value?.start ? dayjs(item?.value?.start) : null}
-              onChange={(value) =>
-                dispatch({
-                  type: "SET_START_DATE",
-                  payload: { id: item?.id, start: value?.toISOString() },
-                })
-              }
+              onChange={(value) => {
+                if (dispatch) {
+                  dispatch({
+                    type: "SET_START_DATE",
+                    payload: { id: item?.id, start: value?.toISOString() },
+                  });
+                }
+              }}
             />
             <span className="mx-2">-</span>
             <DatePicker
               label="End date"
               value={item?.value?.end ? dayjs(item?.value?.end) : null}
-              onChange={(value) =>
-                dispatch({
-                  type: "SET_END_DATE",
-                  payload: { id: item?.id, end: value?.toISOString() },
-                })
-              }
+              onChange={(value) => {
+                if (dispatch) {
+                  dispatch({
+                    type: "SET_END_DATE",
+                    payload: { id: item?.id, end: value?.toISOString() },
+                  });
+                }
+              }}
             />
           </div>
         </LocalizationProvider>

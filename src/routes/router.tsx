@@ -5,6 +5,7 @@ import Permit from "../pages/permits";
 import UpdateTemplate from "../pages/updateTemplate";
 import AddPermit from "../pages/addPermit";
 import CreateTemplateV2 from "../pages/addTemplate";
+import ViewPermitPage from "../pages/viewPermitPage";
 
 const publicRoutes = [
   { path: routeConfig.login, component: Login },
@@ -17,6 +18,7 @@ const privateRoutes = [
   { path: routeConfig.addTemplate, component: CreateTemplateV2 },
   { path: routeConfig.updateTemplate, component: UpdateTemplate },
   { path: routeConfig.addPermit, component: AddPermit },
+  { path: routeConfig.detailPermit, component: ViewPermitPage },
 ];
 
 const adminRoutes = [];

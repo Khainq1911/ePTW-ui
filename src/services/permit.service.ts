@@ -10,4 +10,9 @@ const createPermitService = async (payload: any) => {
   return response?.data;
 };
 
-export { listPermitService, createPermitService };
+const getPermitByIdService = async (id: number) => {
+  const response = await instances.get(`/permit/${id}`)
+  return response.data
+};
+
+export { listPermitService, createPermitService, getPermitByIdService };

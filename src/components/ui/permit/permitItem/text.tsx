@@ -7,7 +7,7 @@ export default function PermitText({ item }: any) {
         {item?.label}
       </Grid>
       <Grid size={8}>
-        <p>{item?.value}</p>
+        <p className="whitespace-pre-wrap">{item?.value}</p>
       </Grid>
     </Grid>
   );

@@ -5,5 +5,6 @@ export const routeConfig = {
   permit: "/permit",
   addTemplate: "/template/add",
   addPermit: "/template/:id",
-  updateTemplate: "/template/update/:id"
+  updateTemplate: "/template/update/:id",
+  detailPermit: "/permit/:id",
 };

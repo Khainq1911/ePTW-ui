@@ -1,13 +1,19 @@
-import { Avatar, Card, CardContent, CardHeader } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+} from "@mui/material";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { formatDate } from "../../../utils/dayjs";
-
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { useNavigate } from "react-router-dom";
 export default function PermitCard({ item }: { item: any }) {
+  const navigate = useNavigate();
   return (
-    <Card
-      className="w-[300px]"
-      sx={{ "&:hover": { backgroundColor: "#f3f4f6" } }}
-    >
+    <Card className="w-[300px]">
       <CardHeader
         avatar={
           <Avatar>
@@ -36,6 +42,14 @@ export default function PermitCard({ item }: { item: any }) {
           </span>
         </p>
       </CardContent>
+      <CardActions>
+        <Button
+          endIcon={<RemoveRedEyeIcon />}
+          onClick={() => navigate(`/permit/${item?.id}`)}
+        >
+          View
+        </Button>
+      </CardActions>
     </Card>
   );
 }

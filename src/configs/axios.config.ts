@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 export const instances = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   timeout: 5000,
@@ -28,10 +26,10 @@ instances.interceptors.response.use(
   async (error) => {
     const originalConfig = error.routeConfig;
 
-    if (error.response && error.response.status === 419) {
+    if (error.response && error.response.status === 401) {
       try {
         const result = await instances.post(
-          `${import.meta.env.BASE_URL}/auth/refresh-token`,
+          `${import.meta.env.VITE_API_URL}/auth/refresh-token`,
           {
             refreshToken: localStorage.getItem("refreshToken"),
           },
@@ -43,6 +41,7 @@ instances.interceptors.response.use(
 
         return instances(originalConfig);
       } catch (err) {
+        console.log(err);
         if (error.response && error.response.status === 400) {
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");

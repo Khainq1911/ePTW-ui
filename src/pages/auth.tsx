@@ -25,6 +25,7 @@ export default function Login() {
     try {
       const res = await loginService(formData);
       localStorage.setItem("accessToken", res.accessToken);
+      localStorage.setItem("refreshToken", res.refreshToken);
       navigate("/");
       notify("Login successful!", "success", "Success");
     } catch (err: any) {

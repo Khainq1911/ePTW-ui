@@ -10,6 +10,10 @@ export interface DecodedToken {
   exp: number;
 }
 
+enum Role {
+  Worker = 1,
+}
+
 const isAuthenticated = () => {
   const token = localStorage.getItem("accessToken");
   return token;
@@ -21,6 +25,16 @@ const getUser = () => {
   }
   const user = jwtDecode<DecodedToken>(token);
 
-  return user
+  return user;
 };
-export { isAuthenticated, getUser };
+
+const isWorker = () => {
+  const user = getUser();
+
+  if (!user) {
+    return;
+  }
+
+  return user.roleId === Role.Worker;
+};
+export { isAuthenticated, getUser, isWorker };

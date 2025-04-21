@@ -1,6 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
+import { isWorker } from "../../hooks/useAuth";
 export default function Filter({
   handleChange,
   query,
@@ -19,6 +20,7 @@ export default function Filter({
       />
       <Button
         variant="contained"
+        sx={{ display: isWorker() ? "none" : "inline-flex" }}
         startIcon={<AddIcon />}
         onClick={() => navigate("/template/add")}
       >

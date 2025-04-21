@@ -8,6 +8,7 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { sidebarContext } from "../../hooks/context/sidebarContext";
+import { getUser } from "../../hooks/useAuth";
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -22,6 +23,7 @@ export default function Header() {
 
   const logout = () => {
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     window.location.href = "/login";
   };
 
@@ -30,7 +32,7 @@ export default function Header() {
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
@@ -67,11 +69,14 @@ export default function Header() {
             ))}
           </Tabs>
         </div>
-        <AccountCircleIcon
-          fontSize="large"
-          className="cursor-pointer text-[#000]"
-          onClick={handleClick}
-        />
+        <div className="flex items-center gap-2">
+          <p className="font-medium">{getUser()?.name}</p>
+          <AccountCircleIcon
+            fontSize="large"
+            className="cursor-pointer text-[#000]"
+            onClick={handleClick}
+          />
+        </div>
       </div>
 
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>

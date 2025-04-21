@@ -13,6 +13,7 @@ import { formatDate } from "../../../utils/dayjs";
 import { useState } from "react";
 import TemplateDialog from "./preview/dialog";
 import { useNavigate } from "react-router-dom";
+import { isWorker } from "../../../hooks/useAuth";
 
 export default function TemplateCard({ item }: { item: any }) {
   const [openDialog, setOpenDialog] = useState(false);
@@ -23,22 +24,24 @@ export default function TemplateCard({ item }: { item: any }) {
 
   return (
     <Card sx={{ width: 240, p: 1 }}>
-      <header className="flex justify-between items-center py-1">
-        <Tooltip title="Delete" placement="top">
-          <IconButton color="error">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
+      {!isWorker() && (
+        <header className="flex justify-between items-center py-1">
+          <Tooltip title="Delete" placement="top">
+            <IconButton color="error">
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
 
-        <Tooltip title="Update" placement="top">
-          <IconButton
-            color="primary"
-            onClick={() => navigate(`/template/update/${item?.id}`)}
-          >
-            <SettingsTwoToneIcon />
-          </IconButton>
-        </Tooltip>
-      </header>
+          <Tooltip title="Update" placement="top">
+            <IconButton
+              color="primary"
+              onClick={() => navigate(`/template/update/${item?.id}`)}
+            >
+              <SettingsTwoToneIcon />
+            </IconButton>
+          </Tooltip>
+        </header>
+      )}
       <CardContent sx={{ mt: -2 }}>
         <Typography
           variant="h6"

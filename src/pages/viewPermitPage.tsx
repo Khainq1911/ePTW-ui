@@ -20,16 +20,19 @@ export default function ViewPermitPage() {
   }, [id]);
 
   return (
-    <div
-      className="w-[1200px] h-screen mx-auto overflow-x-scroll"
-      style={{ height: "calc(100vh - 70px)" }}
-    >
-      <Button startIcon={<ArrowBackIcon />} sx={{margin:"20px 0"}} onClick={() => navigate("/permit")}>
-        Back
-      </Button>
+    <div style={{ height: "calc(100vh - 70px)" }} className="overflow-x-auto p-4">
+      <div className="w-[1200px] h-screen mx-auto ">
+        <Button
+          startIcon={<ArrowBackIcon />}
+          sx={{ margin: "10px 0" }}
+          onClick={() => navigate("/permit")}
+        >
+          Back
+        </Button>
 
-      <div className="w-full min-h-[600px] rounded p-4 shadow">
-        <PermitDetail permit={permit} />
+        <div className="w-full min-h-[600px] rounded p-4 border border-gray-300  ">
+          <PermitDetail permit={permit} />
+        </div>
       </div>
     </div>
   );

@@ -19,36 +19,3 @@ instances.interceptors.request.use(
   },
 );
 
-instances.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  async (error) => {
-    const originalConfig = error.routeConfig;
-
-    if (error.response && error.response.status === 401) {
-      try {
-        const result = await instances.post(
-          `${import.meta.env.VITE_API_URL}/auth/refresh-token`,
-          {
-            refreshToken: localStorage.getItem("refreshToken"),
-          },
-        );
-        const { accessToken, refreshToken } = result.data;
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
-        originalConfig.headers.Authorization = `Bearer $${accessToken}`;
-
-        return instances(originalConfig);
-      } catch (err) {
-        console.log(err);
-        if (error.response && error.response.status === 400) {
-          localStorage.removeItem("accessToken");
-          localStorage.removeItem("refreshToken");
-          window.location.href = "/login";
-        }
-        return Promise.reject(err);
-      }
-    }
-  },
-);

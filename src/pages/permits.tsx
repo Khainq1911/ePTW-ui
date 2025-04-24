@@ -4,6 +4,8 @@ import PermitCard from "../components/ui/permit/permitCard";
 
 export default function Permit() {
   const [listPermit, setListPermit] = useState([]);
+  const [openDialog, setOpenDialog] = useState(false)
+
   useEffect(() => {
     const listPermit = async () => {
       try {

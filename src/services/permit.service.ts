@@ -15,4 +15,9 @@ const getPermitByIdService = async (id: number) => {
   return response.data
 };
 
-export { listPermitService, createPermitService, getPermitByIdService };
+const updatePermitStatus = async (id: number, payload: any) => {
+  const response = await instances.patch(`permit/${id}`, payload)
+  return response.data
+}
+
+export { listPermitService, createPermitService, getPermitByIdService, updatePermitStatus };

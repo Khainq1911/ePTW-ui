@@ -19,9 +19,16 @@ interface Props {
     permit: any;
     getPermitById: () => void;
     handleCloseDialog: () => void;
+    getStatusHistory: () => void;
 }
 
-export default function UpdateStatusForm({ openDialog, permit, getPermitById, handleCloseDialog }: Props) {
+export default function UpdateStatusForm({
+    openDialog,
+    permit,
+    getStatusHistory,
+    getPermitById,
+    handleCloseDialog,
+}: Props) {
     const [status, setStatus] = useState<string | null>(null);
     const [reason, setReason] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
@@ -44,15 +51,16 @@ export default function UpdateStatusForm({ openDialog, permit, getPermitById, ha
                 status: status,
                 reason: reason,
                 permitId: id,
-                senderId: permit?.sender?.id
+                senderId: permit?.sender?.id,
             };
 
             await updatePermitStatus(id, payload);
             getPermitById();
             handleCloseDialog();
+            getStatusHistory();
             notify('update success', 'success', 'Success');
         } catch (error) {
-            console.log(error)
+            console.log(error);
             notify('update success', 'error', 'Error');
         } finally {
             setLoading(false);

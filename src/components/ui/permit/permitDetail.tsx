@@ -1,31 +1,14 @@
 import { Divider, Grid } from '@mui/material';
 import { formatDate } from '../../../utils/dayjs';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-import { renderPermitItem } from '../../../utils/renderPermitItem';
-import { PermitStatus } from '../../../types/enum';
+import { handleRenderStatus, renderPermitItem } from '../../../utils/renderPermitItem';
 
 interface Props {
     permit: any;
 }
 
 export default function PermitDetail({ permit }: Props) {
-    const handleRenderStatus = (status: string) => {
-        const baseStyle = 'px-3 py-1 rounded-full text-white text-sm font-medium';
-
-        switch (status) {
-            case PermitStatus.ACCEPT:
-                return <span className={`${baseStyle} bg-green-500`}>Accepted</span>;
-            case PermitStatus.SUSPEND:
-                return <span className={`${baseStyle} bg-yellow-500`}>Suspended</span>;
-            case PermitStatus.REVISE:
-                return <span className={`${baseStyle} bg-blue-500`}>Needs Revision</span>;
-            case PermitStatus.CLOSE:
-                return <span className={`${baseStyle} bg-gray-500`}>Closed</span>;
-            default:
-                return <span className={`${baseStyle} bg-red-500`}>Unknown</span>;
-        }
-    };
-
+   
     return (
         <div>
             <header className="flex justify-between items-center mb-4">

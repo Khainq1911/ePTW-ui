@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getPermitByIdService, listStatusHistoryService } from '../services/permit.service';
 import { Button, Tooltip } from '@mui/material';
@@ -31,13 +31,19 @@ export default function ViewPermitPage() {
         } catch (error) {}
     };
 
+    const isClosed = useMemo(() => {
+        return permit?.status === PermitStatus.CLOSE;
+    }, [permit]);
+
     useEffect(() => {
-        getStatusHistory();
-        getPermitById();
+        const fetchData = async () => {
+            await Promise.all([getPermitById(), getStatusHistory()]);
+        };
+        fetchData();
     }, [id]);
 
     return (
-        <div style={{ height: 'calc(100vh - 70px)' }} className="overflow-x-auto p-4">
+        <div style={{ height: 'calc(100vh - 70px)' }} className="p-4">
             <div className="w-[1200px] h-screen mx-auto ">
                 <div className="flex justify-between items-center">
                     <Button
@@ -49,34 +55,22 @@ export default function ViewPermitPage() {
                         Back
                     </Button>
                     <Tooltip
-                        title={
-                            permit?.status === PermitStatus.CLOSE
-                                ? 'This permit is closed and cannot be updated'
-                                : 'Click to update status'
-                        }
+                        title={isClosed ? 'This permit is closed and cannot be updated' : 'Click to update status'}
                         arrow
                     >
                         <span>
-                            <Button
-                                variant="contained"
-                                color="warning"
-                                onClick={handleOpenDialog}
-                                disabled={permit?.status === PermitStatus.CLOSE}
-                            >
+                            <Button variant="contained" color="warning" onClick={handleOpenDialog} disabled={isClosed}>
                                 Status
                             </Button>
                         </span>
                     </Tooltip>
                 </div>
 
-                <div className="w-full min-h-[600px] rounded p-4 border border-gray-300">
-                    <PermitDetail permit={permit} />
-                </div>
+                <PermitDetail permit={permit} />
 
-                <div className="w-full mt-8">
-                    <h2 className="text-xl font-semibold mb-4">Status History</h2>
-                    <PermitStatusHistory listStatus={listStatus} />
-                </div>
+                <h2 className="text-xl font-semibold mt-8">Permit Status History</h2>
+
+                <PermitStatusHistory listStatus={listStatus} />
             </div>
 
             <UpdateStatusForm

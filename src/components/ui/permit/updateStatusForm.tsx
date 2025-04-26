@@ -50,7 +50,7 @@ export default function UpdateStatusForm({
             const userId = getUser()?.id;
 
             const payload = {
-                changeBy: userId,
+                changedBy: userId,
                 status,
                 reason,
                 permitId,

@@ -45,23 +45,27 @@ export default function UpdateStatusForm({
     const handleSubmit = async () => {
         setLoading(true);
         try {
-            const id = permit?.id;
+            const permitId = permit?.id;
+            const senderId = permit?.sender?.id;
+            const userId = getUser()?.id;
+
             const payload = {
-                changedBy: getUser()?.id,
-                status: status,
-                reason: reason,
-                permitId: id,
-                senderId: permit?.sender?.id,
+                changeBy: userId,
+                status,
+                reason,
+                permitId,
+                senderId,
             };
 
-            await updatePermitStatus(id, payload);
+            await updatePermitStatus(permitId, payload);
             getPermitById();
-            handleCloseDialog();
             getStatusHistory();
-            notify('update success', 'success', 'Success');
+            handleCloseDialog();
+
+            notify('Update successful', 'success', 'Success');
         } catch (error) {
-            console.log(error);
-            notify('update success', 'error', 'Error');
+            console.error(error);
+            notify('Update failed', 'error', 'Error');
         } finally {
             setLoading(false);
         }

@@ -33,7 +33,7 @@ export default function Confirm({ open, handleClose, handleSubmit, content, load
                     Cancel
                 </Button>
                 <Button onClick={handleSubmit} color="primary" variant="contained" autoFocus disabled={loading}>
-                    {loading ? <CircularProgress size={60} /> : 'Save'}
+                    {loading ? <CircularProgress size={24}/> : 'Save'}
                 </Button>
             </DialogActions>
         </Dialog>

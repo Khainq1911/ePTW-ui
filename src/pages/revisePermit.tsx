@@ -40,14 +40,12 @@ export default function RevisePermit() {
     }, [id]);
 
     const handleRevisePermit = async () => {
+        setLoading(true)
         try {
-            const { receiver, sender, ...data } = state;
             const payload = {
-                ...data,
+                ...state,
                 templateId: template?.id,
                 peopleNumber: Number(state?.peopleNumber),
-                senderId: sender?.id,
-                receiverId: receiver?.id,
                 status: PermitStatus.PENDING,
             };
             await revisePermitService(state?.id, payload);

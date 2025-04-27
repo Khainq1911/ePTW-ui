@@ -1,7 +1,7 @@
 import { Grid, TextField } from "@mui/material";
 
 
-export default function Input({ item, dispatch, field }: any) {
+export default function Input({ item, dispatch }: any) {
 
   return (
     <Grid container spacing={2} sx={{ display: "flex", alignItems: "center" }}>
@@ -12,7 +12,7 @@ export default function Input({ item, dispatch, field }: any) {
         <TextField
           fullWidth
           placeholder="Type text..."
-          value={field?.value}
+          value={item?.value}
           onChange={(e) =>
             dispatch({
               type: "SET_VALUE",

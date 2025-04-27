@@ -16,7 +16,12 @@ const getPermitByIdService = async (id: number) => {
 };
 
 const updatePermitStatus = async (id: number, payload: any) => {
-    const response = await instances.patch(`permit/${id}`, payload);
+    const response = await instances.patch(`/permit/${id}`, payload);
+    return response.data;
+};
+
+const revisePermitService = async (id: number, payload: any) => {
+    const response = await instances.put(`/permit/revise/${id}`, payload);
     return response.data;
 };
 
@@ -25,4 +30,11 @@ const listStatusHistoryService = async (id: number) => {
     return response.data;
 };
 
-export { listStatusHistoryService, listPermitService, createPermitService, getPermitByIdService, updatePermitStatus };
+export {
+    listStatusHistoryService,
+    revisePermitService,
+    listPermitService,
+    createPermitService,
+    getPermitByIdService,
+    updatePermitStatus,
+};

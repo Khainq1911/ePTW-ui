@@ -7,6 +7,7 @@ import AddPermit from '../pages/addPermit';
 import CreateTemplateV2 from '../pages/addTemplate';
 import ViewPermitPage from '../pages/viewPermitPage';
 import RevisePermit from '../pages/revisePermit';
+import Dashboard from '../pages/dashboard';
 
 const publicRoutes = [
     { path: routeConfig.login, component: Login },
@@ -21,6 +22,7 @@ const privateRoutes = [
     { path: routeConfig.addPermit, component: AddPermit },
     { path: routeConfig.detailPermit, component: ViewPermitPage },
     { path: routeConfig.revisePermit, component: RevisePermit },
+    { path: routeConfig.dashboard, component: Dashboard },
 ];
 
 const adminRoutes = [];

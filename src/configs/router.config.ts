@@ -8,4 +8,5 @@ export const routeConfig = {
     updateTemplate: '/template/update/:id',
     detailPermit: '/permit/:id',
     revisePermit: '/permit/revise/:id',
+    dashboard: '/dashboard',
 };

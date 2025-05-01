@@ -5,9 +5,9 @@ import { handleRenderStatus } from '../../../utils/renderPermitItem';
 import { formatDate } from '../../../utils/dayjs';
 export default function PermitStatusHistory({ listStatus }: any) {
     return (
-        <div>
+        <div >
             {listStatus?.map((item: any) => (
-                <div key={item?.id} className="flex flex-col gap-4 p-4 border-b border-gray-200">
+                <div key={item?.id} className="flex flex-col gap-4 p-4 border-b border-[#0267F5]">
                     <div className="flex gap-2 items-center">
                         <AccountCircleOutlinedIcon />
                         <p className="font-semibold">{item?.changedBy?.name}</p>

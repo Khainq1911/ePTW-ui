@@ -8,9 +8,8 @@ interface Props {
 }
 
 export default function PermitDetail({ permit }: Props) {
-   
     return (
-        <div>
+        <div className="w-[1200px] p-10 bg-white mx-auto">
             <header className="flex justify-between items-center mb-4">
                 <div>
                     <p className="mb-2">

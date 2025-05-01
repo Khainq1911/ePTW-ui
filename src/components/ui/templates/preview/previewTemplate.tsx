@@ -29,7 +29,7 @@ export default function TemplatePreview({ item, userName, dispatch, state }: Pre
     }, []);
 
     return (
-        <div className="h-full shadow bg-white p-10 rounded-xl grid gap-8">
+        <div className="bg-white p-10 rounded-xl grid gap-8 w-[1200px] mx-auto">
             <div className="flex justify-between items-center">
                 <p>
                     <strong className="mr-1">Template ID:</strong>

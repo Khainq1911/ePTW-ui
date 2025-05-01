@@ -43,36 +43,36 @@ export default function ViewPermitPage() {
     }, [id]);
 
     return (
-        <div style={{ height: 'calc(100vh - 70px)' }} className="p-4">
-            <div className="w-[1200px] h-screen mx-auto ">
-                <div className="flex justify-between items-center">
-                    <Button
-                        startIcon={<ArrowBackIcon />}
-                        sx={{ margin: '10px 0' }}
-                        onClick={() => navigate('/permit')}
-                        variant="contained"
-                    >
-                        Back
-                    </Button>
-                    <Tooltip
-                        title={isClosed ? 'This permit is closed and cannot be updated' : 'Click to update status'}
-                        arrow
-                    >
-                        <span>
-                            <Button variant="contained" color="warning" onClick={handleOpenDialog} disabled={isClosed}>
-                                Status
-                            </Button>
-                        </span>
-                    </Tooltip>
-                </div>
-
-                <PermitDetail permit={permit} />
-
-                <h2 className="text-xl font-semibold mt-8">Permit Status History</h2>
-
-                <PermitStatusHistory listStatus={listStatus} />
+        <div className="w-screen bg-[#EBEDEF] overflow-auto p-4" style={{ height: 'calc(100vh - 70px)' }}>
+            <div className="flex justify-between items-center">
+                <Button
+                    startIcon={<ArrowBackIcon />}
+                    sx={{ margin: '10px 0' }}
+                    onClick={() => navigate('/permit')}
+                    variant="contained"
+                >
+                    Back
+                </Button>
+                <Tooltip
+                    title={isClosed ? 'This permit is closed and cannot be updated' : 'Click to update status'}
+                    arrow
+                >
+                    <span>
+                        <Button variant="contained" color="warning" onClick={handleOpenDialog} disabled={isClosed}>
+                            Status
+                        </Button>
+                    </span>
+                </Tooltip>
             </div>
 
+            <div className=" overflow-auto mt-4">
+                <PermitDetail permit={permit} />
+            </div>
+
+            <div className="lg:w-[1200px] lg:mx-auto">
+                <h2 className="text-xl font-semibold mt-8">Permit Status History</h2>
+                <PermitStatusHistory listStatus={listStatus} />
+            </div>
             <UpdateStatusForm
                 getPermitById={getPermitById}
                 permit={permit}

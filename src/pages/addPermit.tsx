@@ -71,16 +71,17 @@ export default function AddPermit() {
         }
     };
     return (
-        <div className="w-[80%] mx-auto p-4 ">
-            <div className="flex justify-between items-center my-4">
-                <Button color="primary" startIcon={<ArrowBackIcon />} onClick={() => navigate('/')}>
+        <div className="w-screen bg-[#EBEDEF] overflow-y-auto p-4" style={{ height: 'calc(100vh - 70px)' }}>
+            <div className="flex justify-between items-center p-4">
+                <Button color="primary" startIcon={<ArrowBackIcon />} variant="contained" onClick={() => navigate('/')}>
                     Back
                 </Button>
 
                 <Button
+                    variant="contained"
                     type="submit"
                     color="warning"
-                    startIcon={<SaveIcon />}
+                    endIcon={<SaveIcon />}
                     onClick={handleClickOpen}
                     disabled={loading}
                 >
@@ -88,7 +89,9 @@ export default function AddPermit() {
                 </Button>
             </div>
 
-            <TemplatePreview item={template} userName={getUser()?.name} dispatch={dispatch} state={state} />
+            <div className="overflow-auto">
+                <TemplatePreview item={template} userName={getUser()?.name} dispatch={dispatch} state={state} />
+            </div>
 
             <Confirm
                 open={open}

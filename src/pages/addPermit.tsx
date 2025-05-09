@@ -7,15 +7,17 @@ import { Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
 import { initialState, reducer } from '../hooks/reducer/permitReducer';
-import { createPermitService } from '../services/permit.service';
+import { createPermitService, getPresignUrlService } from '../services/permit.service';
 import Confirm from '../components/ui/confirm';
 import { useNotification } from '../hooks/useNotify';
 import TemplatePreview from '../components/ui/templates/preview/previewTemplate';
+import AttachmentFile from '../components/ui/permit/attachmentFile';
 
 export default function AddPermit() {
     const [template, setTemplate] = useState<TemplateType | null>(null);
     const [state, dispatch] = useReducer(reducer, initialState);
     const [loading, setLoading] = useState(false);
+    const [files, setFiles] = useState<string[] | null>(null);
     const [open, setOpen] = useState(false);
     const { id } = useParams();
     const { notify } = useNotification();
@@ -51,12 +53,32 @@ export default function AddPermit() {
             return;
         }
 
+        if (files) {
+            for (const file of files) {
+                try {
+                    const res = await getPresignUrlService(file);
+                    const presignedUrl = res.url;
+
+                    await fetch(presignedUrl, {
+                        method: 'PUT',
+                        body: file,
+                        headers: {
+                            'Content-Type': 'application/pdf',
+                        },
+                    });
+                } catch (err) {
+                    console.error(`Failed to upload ${file}`, err);
+                }
+            }
+        }
+
         try {
             const payload = {
                 ...state,
                 templateId: template?.id,
                 peopleNumber: Number(state?.peopleNumber),
                 senderId: getUser()?.id,
+                files: files,
             };
             const res = await createPermitService(payload);
             setOpen(false);
@@ -90,6 +112,7 @@ export default function AddPermit() {
 
             <TemplatePreview item={template} userName={getUser()?.name} dispatch={dispatch} state={state} />
 
+            <AttachmentFile files={files} setFiles={setFiles} />
             <Confirm
                 open={open}
                 loading={loading}

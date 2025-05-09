@@ -1,6 +1,6 @@
 import { Grid, TextField } from '@mui/material';
 
-export default function MultipleInput({ item, dispatch, field }: any) {
+export default function MultipleInput({ item, dispatch }: any) {
     return (
         <Grid container spacing={2}>
             <Grid size={4} sx={{ fontWeight: '500' }}>

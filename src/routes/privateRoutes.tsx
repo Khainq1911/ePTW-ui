@@ -1,21 +1,35 @@
-import { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
-import { isAuthenticated } from "../hooks/useAuth";
-import Header from "../components/layout/header";
-import Sidebar from "../components/layout/sidebar";
-
+import { ReactNode, useContext } from 'react';
+import { Navigate } from 'react-router-dom';
+import { isAuthenticated } from '../hooks/useAuth';
+import Sidebar from '../components/layout/sidebar';
+import { Fab } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { sidebarContext } from '../hooks/context/sidebarContext';
 const PrivateRoutes: React.FC<{ children: ReactNode }> = ({ children }) => {
-  return isAuthenticated() ? (
-    <div>
-      <Header />
-      <div className="mt-[70px]">
-        <Sidebar />
-        <div>{children}</div>
-      </div>
-    </div>
-  ) : (
-    <Navigate to="/login" />
-  );
+    const context = useContext(sidebarContext);
+    return isAuthenticated() ? (
+        <div>
+            <Fab
+                onClick={context?.toggleSidebar}
+                color="primary"
+                sx={{
+                    position: 'absolute',
+                    bottom: '40px',
+                    left: '20px',
+                    display: {
+                        xs: 'block',
+                        lg: 'none',
+                    },
+                }}
+            >
+                <MenuIcon />
+            </Fab>
+            <Sidebar />
+            <div className="lg:ml-72">{children}</div>
+        </div>
+    ) : (
+        <Navigate to="/login" />
+    );
 };
 
 export default PrivateRoutes;

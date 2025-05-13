@@ -19,7 +19,6 @@ export default function Bars({ dashboard }: { dashboard: dashboardType | undefin
             ]}
             series={[
                 {
-                    label: 'Permit Status',
                     data: [
                         dashboard?.accept || 0,
                         dashboard?.suspend || 0,

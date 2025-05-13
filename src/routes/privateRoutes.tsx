@@ -2,13 +2,13 @@ import { ReactNode, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { isAuthenticated } from '../hooks/useAuth';
 import Sidebar from '../components/layout/sidebar';
-import { Fab } from '@mui/material';
+import { Divider, Fab } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { sidebarContext } from '../hooks/context/sidebarContext';
 const PrivateRoutes: React.FC<{ children: ReactNode }> = ({ children }) => {
     const context = useContext(sidebarContext);
     return isAuthenticated() ? (
-        <div>
+        <div className="relative">
             <Fab
                 onClick={context?.toggleSidebar}
                 color="primary"
@@ -25,7 +25,7 @@ const PrivateRoutes: React.FC<{ children: ReactNode }> = ({ children }) => {
                 <MenuIcon />
             </Fab>
             <Sidebar />
-            <div className="lg:ml-72">{children}</div>
+            <div className="lg:ml-80">{children}</div>
         </div>
     ) : (
         <Navigate to="/login" />

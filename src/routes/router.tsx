@@ -15,7 +15,7 @@ const publicRoutes = [
 ];
 
 const privateRoutes = [
-    { path: routeConfig.home, component: Home },
+    { path: routeConfig.template, component: Home },
     { path: routeConfig.permit, component: Permit },
     { path: routeConfig.addTemplate, component: CreateTemplateV2 },
     { path: routeConfig.updateTemplate, component: UpdateTemplate },

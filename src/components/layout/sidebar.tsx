@@ -1,81 +1,3 @@
-/* import { useContext, useEffect, useState } from "react";
-import {
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  ListItemButton,
-  ListItemText,
-  Toolbar,
-} from "@mui/material";
-import DescriptionIcon from "@mui/icons-material/Description";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import CloseIcon from "@mui/icons-material/Close";
-import { useLocation, useNavigate } from "react-router-dom";
-
-import { sidebarContext } from "../../hooks/context/sidebarContext";
-
-export default function Sidebar() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const { openSidebar, toggleSidebar } = useContext(sidebarContext) || {};
-
-  const listItems = [
-    { name: "Templates", icon: <DescriptionIcon />, url: "/" },
-    { name: "Permits", icon: <AssignmentIcon />, url: "/permit" },
-  ];
-
-  const handleListItemClick = (index: number, url: string) => {
-    setSelectedIndex(index);
-    navigate(url);
-  };
-
-  useEffect(() => {
-    listItems.map((item, index) => {
-      if (location.pathname.includes(item.url)) {
-        return setSelectedIndex(index);
-      }
-    });
-  }, [location.pathname]);
-
-  return (
-    <Drawer
-      open={openSidebar}
-      onClose={toggleSidebar}
-      className="block sm:hidden"
-    >
-      <Toolbar sx={{ justifyContent: "flex-end" }}>
-        <IconButton onClick={toggleSidebar}>
-          <CloseIcon />
-        </IconButton>
-      </Toolbar>
-      <Divider />
-
-      <List>
-        {listItems.map((item, index) => (
-          <ListItemButton
-            key={index}
-            selected={selectedIndex === index}
-            onClick={() => handleListItemClick(index, item.url)}
-            sx={{
-              width: 200,
-              borderRadius: "10px",
-              backgroundColor:
-                selectedIndex === index ? "#E0E0E0" : "transparent",
-            }}
-          >
-            {item.icon}
-            <ListItemText primary={item.name} sx={{ marginLeft: 1 }} />
-          </ListItemButton>
-        ))}
-      </List>
-    </Drawer>
-  );
-}
- */
-
 import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -88,8 +10,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { sidebarContext } from '../../hooks/context/sidebarContext';
 
 const listItem = [
-    { label: 'Dashboard', icon: <HomeOutlinedIcon />, url: '/dashboard' },
-    { label: 'Templates', icon: <FolderOutlinedIcon />, url: '/' },
+    { label: 'Dashboard', icon: <HomeOutlinedIcon />, url: '/' },
+    { label: 'Templates', icon: <FolderOutlinedIcon />, url: '/template' },
     { label: 'Create Templates', icon: <AddCircleOutlineOutlinedIcon />, url: '/template/add' },
     { label: 'Permits', icon: <FeedOutlinedIcon />, url: '/permit' },
 ];
@@ -107,7 +29,7 @@ export default function Sidebar() {
 
     return (
         <div
-            className={`${context?.openSidebar ? '' : 'hidden'} lg:block w-72 h-full fixed top-0 left-0 z-50 bg-[#FAFAFA]`}
+            className={`${context?.openSidebar ? '' : 'hidden'} lg:block w-80 h-full fixed top-0 left-0 z-50 bg-[#FAFAFA] border-r-1 border-gray-200`}
         >
             <div className="flex items-center justify-start ml-8 h-[80px] gap-4">
                 <FeedOutlinedIcon sx={{ fontSize: '32px', color: '#3F3F46' }} />
@@ -122,7 +44,7 @@ export default function Sidebar() {
                         onClick={context?.toggleSidebar}
                         key={index}
                         to={item.url}
-                        className={`hover:bg-[#F4F4F5] flex items-center gap-2 p-1 rounded-xl mb-1 ${isActive(item.url) ? 'bg-[#F4F4F5] font-semibold' : ' text-[#3F3F46]'}`}
+                        className={`hover:bg-[#F4F4F5] flex items-center gap-2 py-2 px-4 rounded-xl mb-1 ${isActive(item.url) ? 'bg-[#F4F4F5] font-semibold' : ' text-[#3F3F46]'}`}
                     >
                         {item.icon}
                         <p className="text-[18px]">{item.label}</p>

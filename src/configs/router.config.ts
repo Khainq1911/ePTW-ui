@@ -1,5 +1,5 @@
 export const routeConfig = {
-    home: '/',
+    dashboard: '/',
     login: '/login',
     signUp: '/register',
     permit: '/permit',
@@ -8,5 +8,5 @@ export const routeConfig = {
     updateTemplate: '/template/update/:id',
     detailPermit: '/permit/:id',
     revisePermit: '/permit/revise/:id',
-    dashboard: '/dashboard',
+    template: '/template',
 };

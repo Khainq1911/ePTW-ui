@@ -1,10 +1,11 @@
 import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import Logout from '@mui/icons-material/Logout';
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import { Divider } from '@mui/material';
-import { useContext, useMemo } from 'react';
+import { Divider, ListItemIcon, Menu, MenuItem } from '@mui/material';
+import { useContext, useMemo, useState } from 'react';
 import { getUser } from '../../hooks/useAuth';
 import { Link, useLocation } from 'react-router-dom';
 import { sidebarContext } from '../../hooks/context/sidebarContext';
@@ -17,6 +18,20 @@ const listItem = [
 ];
 
 export default function Sidebar() {
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: any) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const logout = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        window.location.href = '/login';
+    };
+
     const { pathname } = useLocation();
     const context = useContext(sidebarContext);
     const userName = useMemo(() => {
@@ -54,10 +69,27 @@ export default function Sidebar() {
 
             <Divider />
 
-            <div className="flex items-center justify-start ml-8 h-[80px] gap-4">
+            <div className="flex items-center justify-start ml-8 h-[80px] gap-4 cursor-pointer" onClick={handleClick}>
                 <AccountCircleRoundedIcon sx={{ fontSize: '40px', color: '#3F3F46' }} />
                 <p className="text-[20px] font-bold text-[#3F3F46]">{userName}</p>
             </div>
+
+            <Menu
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                anchorOrigin={{
+                    vertical: 'center', 
+                    horizontal: 'right',
+                }}
+            >
+                <MenuItem onClick={logout}>
+                    <ListItemIcon>
+                        <Logout fontSize="small" />
+                    </ListItemIcon>
+                    Logout
+                </MenuItem>
+            </Menu>
         </div>
     );
 }

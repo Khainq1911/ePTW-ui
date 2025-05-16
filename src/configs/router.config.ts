@@ -1,12 +1,13 @@
 export const routeConfig = {
-    dashboard: '/',
     login: '/login',
     signUp: '/register',
-    permit: '/permit',
+    dashboard: '/',
+    template: '/template',
+    viewTemplate: '/template/view/:id',
     addTemplate: '/template/add',
-    addPermit: '/template/:id',
     updateTemplate: '/template/update/:id',
+    permit: '/permit',
+    addPermit: '/template/:id',
     detailPermit: '/permit/:id',
     revisePermit: '/permit/revise/:id',
-    template: '/template',
 };

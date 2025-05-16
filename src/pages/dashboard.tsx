@@ -18,6 +18,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import CancelIcon from '@mui/icons-material/Cancel';
 import PauseCircleFilledIcon from '@mui/icons-material/PauseCircleFilled';
+import { isWorker } from '../hooks/useAuth';
 
 export default function Dashboard() {
     const [showAs, setShowAs] = useState(TypeChart.BAR as string);
@@ -83,13 +84,19 @@ export default function Dashboard() {
     }, [dashboard]);
 
     return (
-        <div className="p-5 w-full h-screen bg-[#F9FAFB] overflow-auto">
+        <div className="w-full h-screen px-5 py-8 bg-[#F9FAFB] overflow-auto">
             <div className="md:flex md:justify-between md:items-center">
                 <div>
                     <h1 className="text-[32px] font-bold">Dashboard</h1>
-                    <p className='font-medium text-gray-500'>Welcome to your Permit to Work dashboard</p>
+                    <p className="font-medium text-gray-500">Welcome to your Permit to Work dashboard</p>
                 </div>
-                <Button variant='contained' color='warning' startIcon={<AddCircleOutlineIcon />} onClick={() => navigate(routeConfig.addTemplate)}>
+                <Button
+                    sx={{ display: isWorker() ? 'none' : 'inline-flex' }}
+                    variant="contained"
+                    color="warning"
+                    startIcon={<AddCircleOutlineIcon />}
+                    onClick={() => navigate(routeConfig.addTemplate)}
+                >
                     New Template
                 </Button>
             </div>

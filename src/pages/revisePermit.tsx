@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from 'react';
 import { initialState, reducer } from '../hooks/reducer/permitReducer';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getPermitByIdService, revisePermitService } from '../services/permit.service';
-import TemplatePreview from '../components/ui/templates/preview/previewTemplate';
+import TemplatePreview from '../components/ui/template-form';
 import { getUser } from '../hooks/useAuth';
 import { TemplateType } from '../types/template.type';
 import { Button } from '@mui/material';
@@ -40,7 +40,7 @@ export default function RevisePermit() {
     }, [id]);
 
     const handleRevisePermit = async () => {
-        setLoading(true)
+        setLoading(true);
         try {
             const payload = {
                 ...state,

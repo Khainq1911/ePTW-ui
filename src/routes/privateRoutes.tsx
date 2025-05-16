@@ -25,7 +25,7 @@ const PrivateRoutes: React.FC<{ children: ReactNode }> = ({ children }) => {
                 <MenuIcon />
             </Fab>
             <Sidebar />
-            <div className="lg:ml-80">{children}</div>
+            <div className="lg:ml-80 ">{children}</div>
         </div>
     ) : (
         <Navigate to="/login" />

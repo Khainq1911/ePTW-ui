@@ -15,7 +15,7 @@ const createTemplateService = async (payload: any) => {
     return response.data;
 };
 
-const getByIdService = async (id: number) => {
+const getTemplateByIdService = async (id: number) => {
     const response = await instances.get(`/template/${id}`);
     return response.data;
 };
@@ -24,4 +24,4 @@ const updateTemplateService = async (payload: any, id: number) => {
     const response = await instances.patch(`/template/${id}`, payload);
     return response.data;
 };
-export { listTemplateService, queryTemplatesService, createTemplateService, updateTemplateService, getByIdService };
+export { listTemplateService, queryTemplatesService, createTemplateService, updateTemplateService, getTemplateByIdService };

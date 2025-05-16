@@ -1,9 +1,10 @@
-import PermitDatePicker from '../components/ui/permit/permitItem/date';
-import PermitDateRange from '../components/ui/permit/permitItem/dateRange';
-import PermitList from '../components/ui/permit/permitItem/list';
-import PermitText from '../components/ui/permit/permitItem/text';
-import PermitYesNo from '../components/ui/permit/permitItem/yesNo';
-import Title from '../components/ui/templates/preview/fieldPreview/title';
+
+import PermitDatePicker from '../components/ui/permit-fields/date';
+import PermitDateRange from '../components/ui/permit-fields/dateRange';
+import PermitList from '../components/ui/permit-fields/list';
+import PermitText from '../components/ui/permit-fields/text';
+import PermitYesNo from '../components/ui/permit-fields/yesNo';
+import Title from '../components/ui/template-fields/title';
 import { TYPE } from '../constants/templateFieldType';
 import { PermitStatus } from '../types/enum';
 

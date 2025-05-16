@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { SyntheticEvent, useEffect, useReducer, useState } from 'react';
-import { getByIdService } from '../services/templates.service';
+import { getTemplateByIdService } from '../services/templates.service';
 import { TemplateType } from '../types/template.type';
 import { getUser } from '../hooks/useAuth';
 import { Button } from '@mui/material';
@@ -10,8 +10,8 @@ import { initialState, reducer } from '../hooks/reducer/permitReducer';
 import { createPermitService, getPresignUrlService } from '../services/permit.service';
 import Confirm from '../components/ui/confirm';
 import { useNotification } from '../hooks/useNotify';
-import TemplatePreview from '../components/ui/templates/preview/previewTemplate';
-import AttachmentFile from '../components/ui/permit/attachmentFile';
+import TemplatePreview from '../components/ui/template-form';
+import AttachmentFile from '../components/ui/attachment-file';
 
 export default function AddPermit() {
     const [template, setTemplate] = useState<TemplateType | null>(null);
@@ -33,7 +33,7 @@ export default function AddPermit() {
     useEffect(() => {
         const getTemplate = async () => {
             try {
-                const res = await getByIdService(Number(id));
+                const res = await getTemplateByIdService(Number(id));
                 dispatch({ type: 'SET_DATA', payload: res.fields });
                 setTemplate(res);
             } catch (error) {}
@@ -112,7 +112,7 @@ export default function AddPermit() {
             </div>
 
             <div className="overflow-auto">
-                <TemplatePreview item={template} userName={getUser()?.name} dispatch={dispatch} state={state} />
+                <TemplatePreview template={template} userName={getUser()?.name} dispatch={dispatch} state={state} />
             </div>
 
             <AttachmentFile files={files} setFiles={setFiles} />

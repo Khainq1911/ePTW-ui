@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { queryTemplatesService } from '../services/templates.service';
 import { useDebounce } from '../hooks/useDebounce';
 import {
     Button,
-    IconButton,
     InputAdornment,
     Table,
     TableBody,
     TableCell,
     TableContainer,
     TableHead,
+    TablePagination,
     TableRow,
     TextField,
     Tooltip,
@@ -25,20 +25,44 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { TemplateType } from '../types/template.type';
+import { useNotification } from '../hooks/useNotify';
+
+interface TemplateRowData {
+    id: number;
+    name: string;
+    createdBy: string;
+    createdAt: string;
+    active: ReactNode;
+    action: ReactNode;
+}
 
 export default function Home() {
-    const [templates, setTemplates] = useState([]);
+    const [templates, setTemplates] = useState<TemplateRowData[] | undefined>(undefined);
     const [query, setQuery] = useState<string>('');
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [total, setTotal] = useState(0);
     const debouncedValue = useDebounce(query, 300);
     const navigate = useNavigate();
+    const { notify } = useNotification();
+
+    const handleChangePage = (_: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
 
     useEffect(() => {
         const fetchTemplates = async () => {
             try {
-                const res = await queryTemplatesService(debouncedValue);
+                const res = await queryTemplatesService({ q: debouncedValue, limit: rowsPerPage, page });
 
-                const rowData = res.map((item: TemplateType) => ({
+                const rowData = res.data.map((item: TemplateType) => ({
                     id: item.id,
                     name: item.name,
                     createdBy: 'Admin',
@@ -53,26 +77,49 @@ export default function Home() {
                         </Tooltip>
                     ),
                     action: (
-                        <>
+                        <div className="flex gap-2">
                             <Tooltip title="View">
-                                <IconButton onClick={() => navigate(`/template/view/${item.id}`)}>
-                                    <VisibilityIcon />
-                                </IconButton>
+                                <Button
+                                    variant="outlined"
+                                    onClick={() => navigate(`/template/view/${item.id}`)}
+                                    color="primary"
+                                >
+                                    <VisibilityIcon className="text-blue-600" />
+                                </Button>
                             </Tooltip>
+
                             <Tooltip title="Update">
-                                <IconButton onClick={() => navigate(`/template/update/${item?.id}`)}>
+                                <Button
+                                    variant="outlined"
+                                    onClick={() => navigate(`/template/update/${item?.id}`)}
+                                    color="success"
+                                >
                                     <EditIcon />
-                                </IconButton>
+                                </Button>
                             </Tooltip>
-                        </>
+
+                            <Tooltip title="Use Template">
+                                <Button
+                                    variant="outlined"
+                                    onClick={() => navigate(`/template/${item?.id}`)}
+                                    color="warning"
+                                >
+                                    <ContentCopyIcon />
+                                </Button>
+                            </Tooltip>
+                        </div>
                     ),
                 }));
-
+                setTotal(res.total);
                 setTemplates(rowData);
+
+                if (templates) {
+                    notify('Success', 'success', 'Success');
+                }
             } catch {}
         };
         fetchTemplates();
-    }, [debouncedValue]);
+    }, [debouncedValue, page, rowsPerPage]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
@@ -102,6 +149,8 @@ export default function Home() {
                 </div>
                 <div className="flex gap-4 my-5">
                     <TextField
+                        onChange={handleChange}
+                        placeholder="Type name ..."
                         fullWidth
                         slotProps={{
                             input: {
@@ -113,9 +162,6 @@ export default function Home() {
                             },
                         }}
                     />
-                    <Button variant="outlined" color="success">
-                        Filter
-                    </Button>
                 </div>
                 <TableContainer>
                     <Table>
@@ -131,7 +177,7 @@ export default function Home() {
                         </TableHead>
 
                         <TableBody>
-                            {templates.map((row: any) => (
+                            {templates?.map((row: any) => (
                                 <TableRow key={row?.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                     <TableCell component="th" scope="row">
                                         {row.id}
@@ -146,6 +192,15 @@ export default function Home() {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 25]}
+                    component="div"
+                    count={total}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
             </div>
         </div>
     );

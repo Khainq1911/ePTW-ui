@@ -3,7 +3,7 @@ import Home from '../pages/templates';
 import Login from '../pages/auth';
 import Permit from '../pages/permits';
 import UpdateTemplate from '../pages/updateTemplate';
-import AddPermit from '../pages/addPermit';
+import AddPermit from '../pages/add-permit';
 import CreateTemplateV2 from '../pages/addTemplate';
 import ViewPermitPage from '../pages/viewPermitPage';
 import RevisePermit from '../pages/revisePermit';

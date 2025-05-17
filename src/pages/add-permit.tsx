@@ -12,6 +12,7 @@ import Confirm from '../components/ui/confirm';
 import { useNotification } from '../hooks/useNotify';
 import TemplatePreview from '../components/ui/template-form';
 import AttachmentFile from '../components/ui/attachment-file';
+import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 
 export default function AddPermit() {
     const [template, setTemplate] = useState<TemplateType | null>(null);
@@ -93,10 +94,10 @@ export default function AddPermit() {
         }
     };
     return (
-        <div className="w-screen bg-[#EBEDEF] overflow-y-auto p-4" style={{ height: 'calc(100vh - 70px)' }}>
-            <div className="flex justify-between items-center p-4">
+        <div className="w-full h-screen px-5 py-8 bg-[#F9FAFB] overflow-auto">
+            <div className="flex justify-between items-center">
                 <Button color="primary" startIcon={<ArrowBackIcon />} variant="contained" onClick={() => navigate('/')}>
-                    Back
+                    Back to templates
                 </Button>
 
                 <Button
@@ -111,11 +112,16 @@ export default function AddPermit() {
                 </Button>
             </div>
 
-            <div className="overflow-auto">
-                <TemplatePreview template={template} userName={getUser()?.name} dispatch={dispatch} state={state} />
+            <TemplatePreview template={template} userName={getUser()?.name} dispatch={dispatch} state={state} />
+
+            <div className="bg-white w-full lg:w-[70%] lg:mx-auto py-5 px-10 rounded-xl mt-8">
+                <p className="text-[28px] font-medium mb-4 flex items-center gap-2">
+                    <CloudUploadOutlinedIcon sx={{fontSize:"28px"}}/>
+                    <span>Upload File</span>
+                </p>
+                <AttachmentFile files={files} setFiles={setFiles} />
             </div>
 
-            <AttachmentFile files={files} setFiles={setFiles} />
             <Confirm
                 open={open}
                 loading={loading}

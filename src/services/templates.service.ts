@@ -1,7 +1,7 @@
 import { instances } from '../configs/axios.config';
 
-const queryTemplatesService = async (q: string) => {
-    const response = await instances.get('/template', { params: { q: q } });
+const queryTemplatesService = async ({ q, limit, page }: { q: string; limit: number; page: number }) => {
+    const response = await instances.get('/template', { params: { q, limit, page } });
     return response.data;
 };
 
@@ -24,4 +24,10 @@ const updateTemplateService = async (payload: any, id: number) => {
     const response = await instances.patch(`/template/${id}`, payload);
     return response.data;
 };
-export { listTemplateService, queryTemplatesService, createTemplateService, updateTemplateService, getTemplateByIdService };
+export {
+    listTemplateService,
+    queryTemplatesService,
+    createTemplateService,
+    updateTemplateService,
+    getTemplateByIdService,
+};

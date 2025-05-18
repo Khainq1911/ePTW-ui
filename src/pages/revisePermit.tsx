@@ -77,7 +77,7 @@ export default function RevisePermit() {
                 </Button>
             </div>
 
-            <TemplatePreview item={template} userName={getUser()?.name} dispatch={dispatch} state={state} />
+            <TemplatePreview template={template} userName={getUser()?.name} dispatch={dispatch} state={state} />
 
             <Confirm
                 open={open}

@@ -1,7 +1,7 @@
 import { instances } from '../configs/axios.config';
 
-const listPermitService = async () => {
-    const response = await instances.get('/permit');
+const listPermitService = async (q: string, status: string) => {
+    const response = await instances.get('/permit', { params: { q, status } });
     return response.data;
 };
 

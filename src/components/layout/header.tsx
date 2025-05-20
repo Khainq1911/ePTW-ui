@@ -8,7 +8,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { sidebarContext } from '../../hooks/context/sidebarContext';
+import { sidebarContext } from '../../context/sidebarContext';
 import { getUser } from '../../hooks/useAuth';
 export default function Header() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

@@ -98,6 +98,23 @@ export default function PermitInformation({ dispatch, state }: Props) {
 
             <div className=" grid grid-cols-1 lg:grid-cols-3 gap-4 items-center">
                 <div className="bg-slate-50 rounded-md p-3 flex items-center h-full">
+                    <label className="font-medium text-slate-700">Work Activities</label>
+                </div>
+                <div className="md:col-span-2">
+                    <TextField
+                        required
+                        placeholder="Type text..."
+                        fullWidth
+                        variant="outlined"
+                        name="workActivities"
+                        value={state?.workActivities || ''}
+                        onChange={handleChange}
+                    />
+                </div>
+            </div>
+
+            <div className=" grid grid-cols-1 lg:grid-cols-3 gap-4 items-center">
+                <div className="bg-slate-50 rounded-md p-3 flex items-center h-full">
                     <label className="font-medium text-slate-700">Tools/Equipment to be used</label>
                 </div>
                 <div className="md:col-span-2">

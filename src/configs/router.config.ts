@@ -7,7 +7,7 @@ export const routeConfig = {
     addTemplate: '/template/add',
     updateTemplate: '/template/update/:id',
     permit: '/permit',
-    addPermit: '/template/:id',
+    addPermit: '/template/:id/:permitName',
     detailPermit: '/permit/:id',
     revisePermit: '/permit/revise/:id',
 };

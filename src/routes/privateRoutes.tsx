@@ -4,7 +4,7 @@ import { isAuthenticated } from '../hooks/useAuth';
 import Sidebar from '../components/layout/sidebar';
 import { Divider, Fab } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { sidebarContext } from '../hooks/context/sidebarContext';
+import { sidebarContext } from '../context/sidebarContext';
 const PrivateRoutes: React.FC<{ children: ReactNode }> = ({ children }) => {
     const context = useContext(sidebarContext);
     return isAuthenticated() ? (

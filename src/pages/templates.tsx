@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useContext, useEffect, useState } from 'react';
 import { queryTemplatesService } from '../services/templates.service';
 import { useDebounce } from '../hooks/useDebounce';
 import {
@@ -28,6 +28,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { TemplateType } from '../types/template.type';
 import { useNotification } from '../hooks/useNotify';
+import PermitModal from '../components/ui/modal-permit-name';
+import { modalContext } from '../context/permit-modal-context';
 
 interface TemplateRowData {
     id: number;
@@ -40,12 +42,14 @@ interface TemplateRowData {
 
 export default function Home() {
     const [templates, setTemplates] = useState<TemplateRowData[] | undefined>(undefined);
+    const [selectedTemplate, setSelectedTemplate] = useState('');
     const [query, setQuery] = useState<string>('');
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [total, setTotal] = useState(0);
     const debouncedValue = useDebounce(query, 300);
     const navigate = useNavigate();
+    const context = useContext(modalContext);
     const { notify } = useNotification();
 
     const handleChangePage = (_: unknown, newPage: number) => {
@@ -101,7 +105,10 @@ export default function Home() {
                             <Tooltip title="Use Template">
                                 <Button
                                     variant="outlined"
-                                    onClick={() => navigate(`/template/${item?.id}`)}
+                                    onClick={() => {
+                                        setSelectedTemplate(String(item.id));
+                                        context?.handleModalOpen();
+                                    }}
                                     color="warning"
                                 >
                                     <ContentCopyIcon />
@@ -202,6 +209,7 @@ export default function Home() {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </div>
+            <PermitModal templateArr={templates} selectedTemplate={selectedTemplate} />
         </div>
     );
 }

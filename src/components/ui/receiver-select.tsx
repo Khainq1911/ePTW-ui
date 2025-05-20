@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-export default function ReceiverSelect({ template, listUsers, dispatch, state }: any) {
+export default function ReceiverSelect({ listUsers, dispatch, state }: any) {
     return (
         <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-5">
             <div className="space-y-4">
@@ -13,7 +13,7 @@ export default function ReceiverSelect({ template, listUsers, dispatch, state }:
                         labelId="receiver"
                         id="receiver"
                         label="Receiver"
-                        value={template?.receiverId || state?.receiver?.id || ''}
+                        value={state?.receiverId  || ''}
                         onChange={(e: any) => dispatch({ type: 'SET_RECEIVER', payload: e.target.value })}
                     >
                         <MenuItem value="">

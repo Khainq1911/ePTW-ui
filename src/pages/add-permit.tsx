@@ -6,7 +6,7 @@ import { getUser } from '../hooks/useAuth';
 import { Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
-import { initialState, reducer } from '../hooks/reducer/permitReducer';
+import { initialState, reducer } from '../reducer/permitReducer';
 import { createPermitService, getPresignUrlService } from '../services/permit.service';
 import Confirm from '../components/ui/confirm';
 import { useNotification } from '../hooks/useNotify';
@@ -20,9 +20,10 @@ export default function AddPermit() {
     const [loading, setLoading] = useState(false);
     const [files, setFiles] = useState<string[] | null>(null);
     const [open, setOpen] = useState(false);
-    const { id } = useParams();
+    const { permitName, id } = useParams();
     const { notify } = useNotification();
     const navigate = useNavigate();
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -76,6 +77,7 @@ export default function AddPermit() {
         try {
             const payload = {
                 ...state,
+                name: permitName,
                 templateId: template?.id,
                 peopleNumber: Number(state?.peopleNumber),
                 senderId: getUser()?.id,
@@ -116,7 +118,7 @@ export default function AddPermit() {
 
             <div className="bg-white w-full lg:w-[70%] lg:mx-auto py-5 px-10 rounded-xl mt-8">
                 <p className="text-[28px] font-medium mb-4 flex items-center gap-2">
-                    <CloudUploadOutlinedIcon sx={{fontSize:"28px"}}/>
+                    <CloudUploadOutlinedIcon sx={{ fontSize: '28px' }} />
                     <span>Upload File</span>
                 </p>
                 <AttachmentFile files={files} setFiles={setFiles} />

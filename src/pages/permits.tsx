@@ -59,7 +59,7 @@ export default function Permit() {
     useEffect(() => {
         const listPermit = async () => {
             try {
-                const res = await listPermitService(debounceValue, status);
+                const res = await listPermitService(debounceValue, status, rowsPerPage, page);
                 const rowData = res.data?.map((item: any) => ({
                     id: item.id,
                     name: item.name,
@@ -100,7 +100,7 @@ export default function Permit() {
         };
 
         listPermit();
-    }, [status, debounceValue]);
+    }, [status, debounceValue, rowsPerPage, page]);
 
     return (
         <div className="w-full h-screen px-5 py-8 bg-[#F9FAFB] overflow-auto">

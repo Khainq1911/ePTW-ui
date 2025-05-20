@@ -8,7 +8,7 @@ import { Divider, ListItemIcon, Menu, MenuItem } from '@mui/material';
 import { useContext, useMemo, useState } from 'react';
 import { getUser } from '../../hooks/useAuth';
 import { Link, useLocation } from 'react-router-dom';
-import { sidebarContext } from '../../hooks/context/sidebarContext';
+import { sidebarContext } from '../../context/sidebarContext';
 
 const listItem = [
     { label: 'Dashboard', icon: <HomeOutlinedIcon />, url: '/' },
@@ -79,7 +79,7 @@ export default function Sidebar() {
                 open={open}
                 onClose={handleClose}
                 anchorOrigin={{
-                    vertical: 'center', 
+                    vertical: 'center',
                     horizontal: 'right',
                 }}
             >

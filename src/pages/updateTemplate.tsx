@@ -5,7 +5,7 @@ import { DragDropContext } from '@hello-pangea/dnd';
 import { handleDragEnd } from '../utils/dragEnd';
 import SidebarTemplate from '../components/ui/add-template-layout/sidebar';
 import TemplateContent from '../components/ui/add-template-layout/content';
-import { initialState, reducer } from '../hooks/reducer/templateReducer';
+import { initialState, reducer } from '../reducer/templateReducer';
 
 export default function UpdateTemplate() {
     const { id } = useParams();

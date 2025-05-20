@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { listPermitService } from '../services/permit.service';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {
@@ -27,6 +27,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useDebounce } from '../hooks/useDebounce';
 import { PermitStatus } from '../types/enum';
 import { useNavigate } from 'react-router-dom';
+import PermitModal from '../components/ui/modal-permit-name';
+import { modalContext } from '../context/permit-modal-context';
 
 export default function Permit() {
     const [rows, setRows] = useState<any>();
@@ -36,6 +38,7 @@ export default function Permit() {
     const [query, setQuery] = useState('');
     const [status, setStatus] = useState('');
 
+    const context = useContext(modalContext);
     const navigate = useNavigate();
 
     const debounceValue = useDebounce(query, 300);
@@ -110,6 +113,7 @@ export default function Permit() {
                     sx={{ display: isWorker() ? 'none' : 'inline-flex' }}
                     variant="contained"
                     color="warning"
+                    onClick={context?.handleModalOpen}
                     startIcon={<AddCircleOutlineIcon />}
                 >
                     New Permit
@@ -200,6 +204,7 @@ export default function Permit() {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </div>
+            <PermitModal />
         </div>
     );
 }

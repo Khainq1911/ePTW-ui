@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from 'react';
-import { initialState, reducer } from '../hooks/reducer/permitReducer';
+import { initialState, reducer } from '../reducer/permitReducer';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getPermitByIdService, revisePermitService } from '../services/permit.service';
 import TemplatePreview from '../components/ui/template-form';

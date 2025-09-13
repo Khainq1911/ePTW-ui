@@ -3,10 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getPermitByIdService, listStatusHistoryService } from '../services/permit.service';
 import { Button, Tooltip } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import PermitDetail from '../components/ui/permit/permitDetail';
+import PermitDetail from '../components/ui/permit/permit-detail';
 import UpdateStatusForm from '../components/ui/permit/updateStatusForm';
-import PermitStatusHistory from '../components/ui/permit/permitStatusHistory';
+import PermitStatusHistory from '../components/ui/permit/permit-status-history';
 import { PermitStatus } from '../types/enum';
+import PermitFileAttach from '../components/ui/permit/permit-file-attach';
 export default function ViewPermitPage() {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -43,14 +44,9 @@ export default function ViewPermitPage() {
     }, [id]);
 
     return (
-        <div className="w-screen bg-[#EBEDEF] overflow-auto p-4" style={{ height: 'calc(100vh - 70px)' }}>
+        <div className="w-full px-5 py-8 bg-[#F9FAFB] overflow-auto space-y-8">
             <div className="flex justify-between items-center">
-                <Button
-                    startIcon={<ArrowBackIcon />}
-                    sx={{ margin: '10px 0' }}
-                    onClick={() => navigate('/permit')}
-                    variant="contained"
-                >
+                <Button startIcon={<ArrowBackIcon />} onClick={() => navigate('/permit')} variant="contained">
                     Back
                 </Button>
                 <Tooltip
@@ -65,14 +61,20 @@ export default function ViewPermitPage() {
                 </Tooltip>
             </div>
 
-            <div className=" overflow-auto mt-4">
-                <PermitDetail permit={permit} />
+            <div className="my-8">
+                <h1 className="text-3xl font-bold tracking-tight">Permit Details</h1>
+                <p className="font-medium text-gray-500">View and manage permit information</p>
             </div>
 
-            <div className="lg:w-[1200px] lg:mx-auto">
-                <h2 className="text-xl font-semibold mt-8">Permit Status History</h2>
-                <PermitStatusHistory listStatus={listStatus} />
+            <div className="w-full flex gap-4 flex-col lg:flex-row">
+                <PermitDetail permit={permit} />
+
+                <div className='lg:w-[40%] space-y-4'>
+                    <PermitFileAttach />
+                    <PermitStatusHistory listStatus={listStatus} />
+                </div>
             </div>
+
             <UpdateStatusForm
                 getPermitById={getPermitById}
                 permit={permit}

@@ -23,8 +23,9 @@ instances.interceptors.response.use(
     (response) => response,
     async (error) => {
         const originalConfig = error.config;
-
-        if (error.response && error.response.status === 401) {
+        const isLogin = originalConfig.url.includes('/auth/login');
+      
+        if (error.response && error.response.status === 401 && !isLogin) {
             originalConfig._retry = true;
 
             try {

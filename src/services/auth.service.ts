@@ -1,12 +1,12 @@
-import { FormDataDto } from '../types/auth.type';
 import { instances } from '../configs/axios.config';
+import { LoginFormData, RegisterFormData } from '../types/auth.type';
 
-const loginService = async (loginDto: FormDataDto) => {
+const loginService = async (loginDto: LoginFormData) => {
     const res = await instances.post('/auth/login', loginDto);
     return res.data;
 };
 
-const registerService = async (registerDto: FormDataDto) => {
+const registerService = async (registerDto: RegisterFormData) => {
     const res = await instances.post('/auth/register', registerDto);
     return res.data;
 };

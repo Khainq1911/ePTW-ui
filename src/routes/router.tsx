@@ -5,7 +5,7 @@ import Permit from '../pages/permits';
 import UpdateTemplate from '../pages/updateTemplate';
 import AddPermit from '../pages/add-permit';
 import CreateTemplateV2 from '../pages/add-template';
-import ViewPermitPage from '../pages/viewPermitPage';
+import ViewPermitPage from '../pages/view-permit';
 import RevisePermit from '../pages/revisePermit';
 import Dashboard from '../pages/dashboard';
 import ViewTemplate from '../pages/view-template';
